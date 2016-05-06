@@ -3,9 +3,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class PlayerInfo extends Applet implements KeyListener {
-	public int homeX, homeY; 
-	public int curX, curY; 
-	public int score, hidden; 
+	public int homeX, homeY; // ��ʼ���
+	public int curX, curY; // ��ǰ���
+	public int score, hidden; // ���� ���� ����
 	public int curBlood, curCure;
 
 	public PlayerInfo() {
@@ -40,12 +40,12 @@ public class PlayerInfo extends Applet implements KeyListener {
 		if (curX < 0 || info.width <= curX || curY < 0 || info.height <= curY) { // ����
 			return false;
 		}
-		for (int i = 0; i < GameInfo.PLAYER_NUM; ++i) { 
+		for (int i = 0; i < GameInfo.PLAYER_NUM; ++i) { // �ص�
 			if (curX == info.PlayerInfo[i].curX && curY == this.samuraiInfo[i].curY) {
 				return false;
 			}
 			if (i != this.weapon && (curX == this.samuraiInfo[i].homeX && curY == this.samuraiInfo[i].homeY)) {
-				return false; 
+				return false; // ��ռ�����˵ļ���
 			}
 		}
 	}
