@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class mapPanel extends JPanel {
 
 	static ImageIcon back = new ImageIcon(
-			"/Users/chengyunfei/Desktop/ELwork/GrassCraft/Graphics/gameBG.jpeg");
+			"/Users/chengyunfei/Desktop/GrassCraft//Graphics/gameBG.jpeg");
 	static Image im = back.getImage();
 	static Block[][] blocks = new Block[10][10];
 	public int[][] xPosition = new int[10][10];
