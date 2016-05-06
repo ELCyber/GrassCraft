@@ -3,9 +3,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class PlayerInfo extends Applet implements KeyListener {
-	public int homeX, homeY; // ÆðÊ¼×ø±ê
-	public int curX, curY; // µ±Ç°×ø±ê
-	public int score, hidden; // ÅÅÃû£¬ ·ÖÊý£¬ Òþ²Ø
+	public int homeX, homeY; // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½
+	public int curX, curY; // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
+	public int score, hidden; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int curBlood, curCure;
 
 	public PlayerInfo() {
@@ -37,15 +37,15 @@ public class PlayerInfo extends Applet implements KeyListener {
 			curY = curY;
 		}
 
-		if (curX < 0 || info.width <= curX || curY < 0 || info.height <= curY) { // ³ö½ç
+		if (curX < 0 || info.width <= curX || curY < 0 || info.height <= curY) { // ï¿½ï¿½ï¿½ï¿½
 			return false;
 		}
-		for (int i = 0; i < GameInfo.PLAYER_NUM; ++i) { // ÖØµþ
+		for (int i = 0; i < GameInfo.PLAYER_NUM; ++i) { // ï¿½Øµï¿½
 			if (curX == info.PlayerInfo[i].curX && curY == this.samuraiInfo[i].curY) {
 				return false;
 			}
 			if (i != this.weapon && (curX == this.samuraiInfo[i].homeX && curY == this.samuraiInfo[i].homeY)) {
-				return false; // ÇÖÕ¼µ½±ðÈËµÄ¼ÒÀï
+				return false; // ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½ËµÄ¼ï¿½ï¿½ï¿½
 			}
 		}
 	}
