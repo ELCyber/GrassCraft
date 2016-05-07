@@ -1,19 +1,26 @@
 package ui;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class gameButton implements ActionListener{
+import music.Player;
+
+public class gameButton extends MouseAdapter{
+	ImageIcon iconExit = new ImageIcon("Graphics/Button/exit.png");
+	ImageIcon iconExitEntered = new ImageIcon("Graphics/Button/exitentered.png");
+	ImageIcon iconExitClicked = new ImageIcon("Graphics/Button/exitclicked.png");
+	
 	public JButton startButton;
 	public JButton ruleButton;
 	public JButton teamButton;
 	public JButton ruleBackButton;
 	public JButton teamBackButton;
 	public JButton startBackButton;
+	public JButton exitGameButton;
 	
 	public Container con;
 	FrameGame frame;
@@ -22,6 +29,18 @@ public class gameButton implements ActionListener{
 		this.frame=frame;
 		con=frame.getContentPane();
 	}
+	public JButton createExitButton() {
+		exitGameButton = new JButton();
+		exitGameButton.setBorder(null);
+		exitGameButton.setBounds(1000, 50, 140, 120);
+		exitGameButton.setContentAreaFilled(false);
+		exitGameButton.setIcon(iconExit);
+		exitGameButton.setRolloverIcon(iconExitEntered);
+		exitGameButton.setPressedIcon(iconExitClicked);
+		exitGameButton.addMouseListener(this);
+		return exitGameButton;
+	}
+	
 	public JButton createTeamButton() {
 		teamButton = new JButton();
 		ImageIcon icon = new ImageIcon("Graphics/Button/按钮制作团队.png");
@@ -29,7 +48,7 @@ public class gameButton implements ActionListener{
 		teamButton.setBounds(650, 480, 260, 68);
 		teamButton.setIcon(icon);
 
-		teamButton.addActionListener(this);
+		teamButton.addMouseListener(this);
 		return teamButton;
 	}
 
@@ -40,7 +59,7 @@ public class gameButton implements ActionListener{
 		ruleButton.setBounds(640, 370, 272, 73);
 		ruleButton.setIcon(icon);
 
-		ruleButton.addActionListener(this);
+		ruleButton.addMouseListener(this);
 		return ruleButton;
 	}
 
@@ -51,7 +70,7 @@ public class gameButton implements ActionListener{
 		startButton.setBounds(660, 285, 162, 56);
 		startButton.setIcon(icon);
 
-		startButton.addActionListener(this);
+		startButton.addMouseListener(this);
 		return startButton;
 	}
 
@@ -61,7 +80,7 @@ public class gameButton implements ActionListener{
 		startBackButton.setBorder(null);
 		startBackButton.setBounds(1000, 50, 167, 72);
 
-		startBackButton.addActionListener(this);
+		startBackButton.addMouseListener(this);
 		return startBackButton;
 	}
 
@@ -70,7 +89,7 @@ public class gameButton implements ActionListener{
 		ruleBackButton.setBorder(null);
 		ruleBackButton.setBounds(1000, 50, 167, 72);
 
-		ruleBackButton.addActionListener(this);
+		ruleBackButton.addMouseListener(this);
 		return ruleBackButton;
 	}
 
@@ -79,20 +98,19 @@ public class gameButton implements ActionListener{
 		teamBackButton.setBorder(null);
 		teamBackButton.setBounds(1000, 50, 167, 72);
 
-		teamBackButton.addActionListener(this);
+		teamBackButton.addMouseListener(this);
 		return teamBackButton;
 	}
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == startButton) {
 			con.removeAll();
 			con.add(frame.mapPanel);
 			con.revalidate();
 			con.repaint();
-			//change music
-//			gcAP.stopMusic();
-			// gcAP.playMusic("02");
-		}
+			Player.playSound("amaprollover");
+			}
 		if (e.getSource() == startBackButton || e.getSource() == ruleBackButton
 				|| e.getSource() == teamBackButton) {
 			con.removeAll();
@@ -111,7 +129,15 @@ public class gameButton implements ActionListener{
 			con.add(frame.teamPanel);
 			con.revalidate();
 			con.repaint();
-		}		
+		}	
+		if(e.getSource() == exitGameButton){
+			System.exit(0);
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		Player.playSound("amaprollover");
 	}
 
 }

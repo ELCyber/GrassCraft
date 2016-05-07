@@ -13,13 +13,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import music.gcAudioPlayer;
+import music.Player;
 import util.FrameUtil;
 
 public class FrameGame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public Container con;
-	gcAudioPlayer gcAP=new gcAudioPlayer();
 	public static final Image WINDOW_BG = new ImageIcon("Graphics/开始界面2.jpg").getImage();
 	public static Image cursorpng = new ImageIcon("Graphics/cursor.png").getImage();
 	public JPanel firstPanel;
@@ -30,7 +29,6 @@ public class FrameGame extends JFrame {
 	/**
 	 * 实现移动
 	 */
-    //private boolean in = false;
     private boolean moving;
     private int nowX;
     private int nowY;
@@ -40,6 +38,8 @@ public class FrameGame extends JFrame {
 	
 	public FrameGame() {
 
+		//播放音乐
+		Player.playMusic("home");
 		this.setUndecorated(true);
 		this.setTitle("GrassCraft");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,14 +66,13 @@ public class FrameGame extends JFrame {
 		initMapPanel();
 		con.add(firstPanel);
 		this.setVisible(true);
-		///gcAP.playMusic("01");
-		
-		// 实现移动
+
+		// 实现窗体移动
 	  	this.setMove();
 	}
 	
 	/**
-	 * 实现移动
+	 * 实现窗体移动
 	 */
 	private void setMove() {
         this.addMouseListener(new MouseAdapter() {
@@ -109,8 +108,8 @@ public class FrameGame extends JFrame {
 	}
 
 	private void initFirstPanel() {
-
 		firstPanel.setLayout(null);
+		firstPanel.add(gB.createExitButton());
 		firstPanel.add(gB.createBeginButton());
 		firstPanel.add(gB.createRuleButton());
 		firstPanel.add(gB.createTeamButton());

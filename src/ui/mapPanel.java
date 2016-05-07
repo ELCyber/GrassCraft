@@ -72,37 +72,11 @@ public class mapPanel extends JPanel {
 
 		}
 
-		/*Grassman man1 = new Grassman(1);
-		Grassman man2 = new Grassman(2);
-		Grassman man3 = new Grassman(3);
-		Grassman man4 = new Grassman(4);
-		Grassman man5 = new Grassman(5);*/
 		for(int i =0;i<6;i++){
 		g.drawImage(mans[i].getManImage(),
 				xPosition[mans[i].getXPosition()][mans[i].getYPosition()],
 				yPosition[mans[i].getXPosition()][mans[i].getYPosition()], 80, 80,
 				this);
 		}
-/*		g.drawImage(mans[1].getManImage(),
-				xPosition[mans[2].getXPosition()][mans[2].getYPosition()],
-				yPosition[man.getXPosition()][man1.getYPosition()], 80, 80,
-				this);
-		g.drawImage(man2.getManImage(),
-				xPosition[man2.getXPosition()][man2.getYPosition()],
-				yPosition[man2.getXPosition()][man2.getYPosition()], 80, 80,
-				this);
-		g.drawImage(man3.getManImage(),
-				xPosition[man3.getXPosition()][man3.getYPosition()],
-				yPosition[man3.getXPosition()][man3.getYPosition()], 80, 80,
-				this);
-		g.drawImage(man4.getManImage(),
-				xPosition[man4.getXPosition()][man4.getYPosition()],
-				yPosition[man4.getXPosition()][man4.getYPosition()], 80, 80,
-				this);
-		g.drawImage(man5.getManImage(),
-				xPosition[man5.getXPosition()][man5.getYPosition()],
-				yPosition[man5.getXPosition()][man5.getYPosition()], 80, 80,
-				this);
-				*/
 	}
 }
