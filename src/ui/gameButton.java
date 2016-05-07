@@ -24,7 +24,7 @@ public class gameButton implements ActionListener{
 	}
 	public JButton createTeamButton() {
 		teamButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/°´Å¥ÖÆ×÷ÍÅ¶Ó.png");
+		ImageIcon icon = new ImageIcon("Graphics/Button/æŒ‰é’®åˆ¶ä½œå›¢é˜Ÿ.png");
 		teamButton.setBorder(null);
 		teamButton.setBounds(650, 480, 260, 68);
 		teamButton.setIcon(icon);
@@ -35,7 +35,7 @@ public class gameButton implements ActionListener{
 
 	public JButton createRuleButton() {
 		ruleButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/°´Å¥ÓÎÏ·¹æÔò.png");
+		ImageIcon icon = new ImageIcon("Graphics/Button/æŒ‰é’®æ¸¸æˆè§„åˆ™.png");
 		ruleButton.setBorder(null);
 		ruleButton.setBounds(640, 370, 272, 73);
 		ruleButton.setIcon(icon);
@@ -46,7 +46,7 @@ public class gameButton implements ActionListener{
 
 	public JButton createBeginButton() {
 		startButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/°´Å¥¿ªÊ¼.png");
+		ImageIcon icon = new ImageIcon("Graphics/Button/æŒ‰é’®å¼€å§‹.png");
 		startButton.setBorder(null);
 		startButton.setBounds(660, 285, 162, 56);
 		startButton.setIcon(icon);
