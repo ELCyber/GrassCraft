@@ -7,9 +7,9 @@ public class GameControl {
 	
 	private mapPanel mapP;
 	private Grassman man;
-	private Grassman nextMan;
 	private Grassman[] mans;
 	public GameControl(mapPanel mapP,Grassman[] grassMans){
+		//初始化，传入第一个grassman及所有grassman数组；
 		this.mapP=mapP;
         this.man=grassMans[0];
         this.mans = grassMans;
@@ -52,8 +52,10 @@ public class GameControl {
 	}
 	public void KeyNextPlayer(){
 		this.man=mans[this.getMan()];
+		//设置man为下一个grassman；
 	}
     public int getMan(){
+    	//判断当前的grassman是第几个，返回当前grassman的下一个grassman的编号；
     	int n = 1;
     	for(int i=0;i<6;i++){
     		if(this.man==mans[i]){
@@ -62,5 +64,6 @@ public class GameControl {
     		}
     	}
     	return n%6;
+    	//使数字保持在0～5；
     }
 }
