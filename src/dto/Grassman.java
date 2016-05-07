@@ -13,6 +13,7 @@ public class Grassman {
 	public int y;
 	public int newX;
 	public int newY;
+	public int blood;
 
 	public Grassman(int i) {
 
@@ -87,5 +88,4 @@ public class Grassman {
 		return false;
 	}
 	
-
 }

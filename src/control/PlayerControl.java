@@ -12,7 +12,7 @@ public class PlayerControl extends KeyAdapter{
     }
     
 	/*
-	 * ¼üÅÌ°´ÏÂÊÂ¼þ
+	 * ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 	 */
 	
 	
@@ -36,6 +36,9 @@ public class PlayerControl extends KeyAdapter{
 		  case KeyEvent.VK_RIGHT:
 			  this.gameControl.KeyRight();
 			     break;
+		  case KeyEvent.VK_ENTER  :
+			  this.gameControl.KeyNextPlayer();
+			  break;
 	    default:
 		     	 break;
 		}

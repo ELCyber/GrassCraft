@@ -21,11 +21,14 @@ public class mapPanel extends JPanel {
 	public int[][] yPosition = new int[10][10];
 	public int x;
 	public int y;
-	Grassman man0;
+	Grassman[] mans = new Grassman[6];
 	public mapPanel() {
-		 man0 = new Grassman(0);
+		 //man0 = new Grassman(0);
 		//test
-		GameControl gameControl=new GameControl(this,man0);
+		for(int i =0;i<6;i++){
+			mans[i]=new Grassman(i);
+		}
+		GameControl gameControl=new GameControl(this,mans);
 		PlayerControl playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
 	}
@@ -69,18 +72,20 @@ public class mapPanel extends JPanel {
 
 		}
 
-		Grassman man1 = new Grassman(1);
+		/*Grassman man1 = new Grassman(1);
 		Grassman man2 = new Grassman(2);
 		Grassman man3 = new Grassman(3);
 		Grassman man4 = new Grassman(4);
-		Grassman man5 = new Grassman(5);
-		g.drawImage(man0.getManImage(),
-				xPosition[man0.getXPosition()][man0.getYPosition()],
-				yPosition[man0.getXPosition()][man0.getYPosition()], 80, 80,
+		Grassman man5 = new Grassman(5);*/
+		for(int i =0;i<6;i++){
+		g.drawImage(mans[i].getManImage(),
+				xPosition[mans[i].getXPosition()][mans[i].getYPosition()],
+				yPosition[mans[i].getXPosition()][mans[i].getYPosition()], 80, 80,
 				this);
-		g.drawImage(man1.getManImage(),
-				xPosition[man1.getXPosition()][man1.getYPosition()],
-				yPosition[man1.getXPosition()][man1.getYPosition()], 80, 80,
+		}
+/*		g.drawImage(mans[1].getManImage(),
+				xPosition[mans[2].getXPosition()][mans[2].getYPosition()],
+				yPosition[man.getXPosition()][man1.getYPosition()], 80, 80,
 				this);
 		g.drawImage(man2.getManImage(),
 				xPosition[man2.getXPosition()][man2.getYPosition()],
@@ -98,5 +103,6 @@ public class mapPanel extends JPanel {
 				xPosition[man5.getXPosition()][man5.getYPosition()],
 				yPosition[man5.getXPosition()][man5.getYPosition()], 80, 80,
 				this);
+				*/
 	}
 }

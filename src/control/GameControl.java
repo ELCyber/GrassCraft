@@ -7,10 +7,12 @@ public class GameControl {
 	
 	private mapPanel mapP;
 	private Grassman man;
-	
-	public GameControl(mapPanel mapP,Grassman man){
+	private Grassman nextMan;
+	private Grassman[] mans;
+	public GameControl(mapPanel mapP,Grassman[] grassMans){
 		this.mapP=mapP;
-		this.man=man;
+        this.man=grassMans[0];
+        this.mans = grassMans;
 	}
 
 	public void KeyUp() {
@@ -48,5 +50,17 @@ public class GameControl {
 		}
 		this.mapP.repaint();
 	}
-    
+	public void KeyNextPlayer(){
+		this.man=mans[this.getMan()];
+	}
+    public int getMan(){
+    	int n = 1;
+    	for(int i=0;i<6;i++){
+    		if(this.man==mans[i]){
+    			n=i+1;
+    			break;
+    		}
+    	}
+    	return n%6;
+    }
 }
