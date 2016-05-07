@@ -14,7 +14,8 @@ public class GameControl {
         this.man=grassMans[0];
         this.mans = grassMans;
 	}
-
+	
+	// Actions control
 	public void KeyUp() {
 		man.setY(1);
 		if(man.isOverZone(man.getXPosition(),man.getYPosition())){
@@ -50,20 +51,15 @@ public class GameControl {
 		}
 		this.mapP.repaint();
 	}
-	public void KeyNextPlayer(){
-		this.man=mans[this.getMan()];
-		//设置man为下一个grassman；
+	
+	public void KeyOffen(){}
+	
+	// Time control
+	
+	public void getNextPlayer(){	
 	}
-    public int getMan(){
-    	//判断当前的grassman是第几个，返回当前grassman的下一个grassman的编号；
-    	int n = 1;
-    	for(int i=0;i<6;i++){
-    		if(this.man==mans[i]){
-    			n=i+1;
-    			break;
-    		}
-    	}
-    	return n%6;
-    	//使数字保持在0～5；
-    }
+   
+	
+	
+    
 }

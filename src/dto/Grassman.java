@@ -9,16 +9,16 @@ public class Grassman {
 	private String manName;
 	// public int[][] xPosition = new int[10][10];
 	// public int[][] yPosition = new int[10][10];
-	public int x;
-	public int y;
-	public int newX;
-	public int newY;
-	public int blood;
-
+	private int x;
+	private int y;
+	private int newX;
+	private int newY;
+	private int blood;
+	private int cure;
+	
 	public Grassman(int i) {
-
-		// i = 0,1,2 are in a team
-		// i = 3,4,5 are in another
+		int blood = 3;
+		int cure = 7;
 		switch (i) {
 		case 0:
 			manName = "Graphics/Characters/grassMan0.0.png";
