@@ -1,4 +1,4 @@
-package ui;
+﻿package ui;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,25 +6,36 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import control.GameControl;
+import control.PlayerControl;
+import dto.Grassman;
+
 public class mapPanel extends JPanel {
 
-	static ImageIcon back = new ImageIcon(
-			"/Users/chengyunfei/Desktop/GrassCraft//Graphics/gameBG.jpeg");
+
+	static ImageIcon back = new ImageIcon("Graphics/gameBG.jpeg");
+
 	static Image im = back.getImage();
 	static Block[][] blocks = new Block[10][10];
 	public int[][] xPosition = new int[10][10];
 	public int[][] yPosition = new int[10][10];
 	public int x;
 	public int y;
-
+	Grassman man0;
 	public mapPanel() {
-
+		 man0 = new Grassman(0);
+		//test
+		GameControl gameControl=new GameControl(this,man0);
+		PlayerControl playControl=new PlayerControl(gameControl);
+		this.addKeyListener(playControl);
 	}
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		//绘制背景
 		g.drawImage(im, 0, 0, getWidth(), getHeight(), this);
-
+		this.requestFocus();
+		//初始化地块
 		for (int x = 0; x < 10; x++) {
 			for (int y = 0; y < 10; y++) {
 				blocks[x][y] = new Block();
@@ -47,6 +58,7 @@ public class mapPanel extends JPanel {
 			for (int y = 0; y < 10; y++) {
 				// Image name = new ImageIcon(blocks[x][y].name).getImage();
 
+				//绘制地块
 				g.drawImage((blocks[x][y]).getImage(), 100 + 50 * x + 50 * m,
 						320 + 30 * x - 30 * n, 100, 60, this);
 				xPosition[x][y] = 100 + 50 * x + 50 * m + 10;
@@ -57,28 +69,6 @@ public class mapPanel extends JPanel {
 
 		}
 
-		// test code
-		// ...
-		/*
-		 * ImageIcon cha = new ImageIcon(
-		 * "/Users/chengyunfei/Desktop/GrassCraft/Graphics/el人物/人物1.0.png");
-		 * Image first = cha.getImage(); ImageIcon cha2 = new ImageIcon(
-		 * "/Users/chengyunfei/Desktop/GrassCraft/Graphics/el人物/人物4.png"); Image
-		 * second = cha2.getImage(); ImageIcon cha3 = new ImageIcon(
-		 * "/Users/chengyunfei/Desktop/GrassCraft/Graphics/el人物/人物3.png"); Image
-		 * third = cha3.getImage();
-		 */
-		/*
-		 * for(int x=0;x<10;x++){ for(int y=0;y<10;y++){
-		 * g.drawImage(first,xPosition[x][y]+10,yPosition[x][y]-35,80,80,this);
-		 * } }
-		 */
-
-		//
-		// test code...
-		//
-
-		Grassman man0 = new Grassman(0);
 		Grassman man1 = new Grassman(1);
 		Grassman man2 = new Grassman(2);
 		Grassman man3 = new Grassman(3);
@@ -108,9 +98,5 @@ public class mapPanel extends JPanel {
 				xPosition[man5.getXPosition()][man5.getYPosition()],
 				yPosition[man5.getXPosition()][man5.getYPosition()], 80, 80,
 				this);
-		/*
-		 * g.drawImage(first, 110, 290, 80, 80, this); g.drawImage(second, 310,
-		 * 290, 80, 80, this); g.drawImage(third, 520, 170, 80, 80, this);
-		 */
 	}
 }

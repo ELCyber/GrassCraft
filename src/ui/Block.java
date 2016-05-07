@@ -11,19 +11,19 @@ public class Block  {
 	//
 	//
 	public Block(){
-		this.name="/Users/chengyunfei/Desktop/ELwork/GrassCraft/Graphics/colorBlock/green.png";
+		this.name="Graphics/colorBlock/green.png";
 	}
 	
 	public void changeColor(int number) {
 		switch (number) {
 		case 1:
-			this.name = "/Users/chengyunfei/Desktop/ELwork/GrassCraft/Graphics/colorBlock/yellow2.png";
+			this.name = "Graphics/colorBlock/yellow2.png";
 			break;
 		case 2:
-			this.name = "/Users/chengyunfei/Desktop/ELwork/GrassCraft/Graphics/colorBlock/blue.png";
+			this.name = "Graphics/colorBlock/blue.png";
 			break;
 		case 3:
-			this.name = "/Users/chengyunfei/Desktop/ELwork/GrassCraft/Graphics/colorBlock/lightRed.png";
+			this.name = "Graphics/colorBlock/lightRed.png";
 			break;
 		default:
 			break;
