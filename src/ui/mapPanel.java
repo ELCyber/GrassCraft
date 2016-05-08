@@ -28,7 +28,7 @@ public class mapPanel extends JPanel {
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
 		}
-		GameControl gameControl=new GameControl(this,mans);
+		GameControl gameControl=new GameControl(this,mans, null);
 		PlayerControl playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
 	}

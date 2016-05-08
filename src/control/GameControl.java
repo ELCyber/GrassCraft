@@ -77,7 +77,16 @@ public class GameControl {
 	}
 		}
 	// 攻击：判断：体力值     是不是攻击到（涉及到对成员数组的操作）
-	public boolean KeyOffend(){
+	public boolean KeyOffendUp(){
+		return false;
+}
+	public boolean KeyOffendDown(){
+		return false;
+}
+	public boolean KeyOffendLeft(){
+		return false;
+}
+	public boolean KeyOffendRight(){
 		return false;
 }
 	// 确认：判断是否回合完毕，若未， 回合+1
