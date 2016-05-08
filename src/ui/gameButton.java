@@ -136,7 +136,7 @@ public class gameButton extends MouseAdapter{
 			con.add(frame.teamPanel);
 			con.revalidate();
 			con.repaint();
-		}	
+        }	
 		if(e.getSource() == exitGameButton){
 			System.exit(0);
 		}

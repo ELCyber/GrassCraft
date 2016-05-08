@@ -25,7 +25,6 @@ public class FrameGame extends JFrame {
 	public JPanel rulePanel;
 	public JPanel teamPanel;
 	public JPanel mapPanel;
-	
 	/**
 	 * 实现移动
 	 */
