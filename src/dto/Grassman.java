@@ -11,14 +11,14 @@ public class Grassman {
 	// public int[][] yPosition = new int[10][10];
 	private int x;
 	private int y;
-	private int newX;
-	private int newY;
+//	private int newX;
+//	private int newY;
 	private int blood;
 	private int cure;
 	
 	public Grassman(int i) {
 		int blood = 3;
-		int cure = 7;
+		int cure = 6;
 		switch (i) {
 		case 0:
 			manName = "Graphics/Characters/grassMan0.0.png";
@@ -68,6 +68,8 @@ public class Grassman {
 		return y;
 	}
 
+
+//  提供基本的操作，让GameControl引用（ 上下左右移动
 	public void setX(int i) {
 		// just change x by adding i;
 		// i can be 1,-1,2,-2;
@@ -80,12 +82,13 @@ public class Grassman {
 		// i can be 1,-1,2,-2;
 		this.y = this.y + i;
 	}
-	
-	public boolean isOverZone(int newX,int newY){
-		if(newX<0||newX>9||newY<0||newY>9){
-			return true;
-		}
-		return false;
-	}
+
+//	出界判断，移到gameControl
+//	public boolean isOverZone(int newX,int newY){
+//		if(newX<0||newX>9||newY<0||newY>9){
+//			return true;
+//		}
+//		return false;
+//	}
 	
 }
