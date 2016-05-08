@@ -11,8 +11,15 @@ import music.Player;
 
 public class gameButton extends MouseAdapter{
 	ImageIcon iconExit = new ImageIcon("Graphics/Button/exit.png");
+	ImageIcon iconTeam = new ImageIcon("Graphics/Button缩小版/制作团队（小）.png");
+	ImageIcon iconRule = new ImageIcon("Graphics/Button缩小版/游戏规则(小).png");
+	ImageIcon iconStart= new ImageIcon("Graphics/Button缩小版/开始（小）.png");
 	ImageIcon iconExitEntered = new ImageIcon("Graphics/Button/exitentered.png");
 	ImageIcon iconExitClicked = new ImageIcon("Graphics/Button/exitclicked.png");
+	ImageIcon iconStartEntered = new ImageIcon("Graphics/Button/开始（大）.png");
+	ImageIcon iconRuleEntered = new ImageIcon("Graphics/Button/游戏规则（大）.png");
+	ImageIcon iconTeamEntered = new ImageIcon("Graphics/Button/制作团队（大）.png");
+	
 	
 	public JButton startButton;
 	public JButton ruleButton;
@@ -43,33 +50,33 @@ public class gameButton extends MouseAdapter{
 	
 	public JButton createTeamButton() {
 		teamButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/按钮制作团队.png");
 		teamButton.setBorder(null);
-		teamButton.setBounds(650, 480, 260, 68);
-		teamButton.setIcon(icon);
-
+		teamButton.setBounds(680, 480, 260, 68);
+		teamButton.setContentAreaFilled(false);
+		teamButton.setIcon(iconTeam);
+		teamButton.setRolloverIcon(iconTeamEntered);
 		teamButton.addMouseListener(this);
 		return teamButton;
 	}
 
 	public JButton createRuleButton() {
 		ruleButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/按钮游戏规则.png");
 		ruleButton.setBorder(null);
-		ruleButton.setBounds(640, 370, 272, 73);
-		ruleButton.setIcon(icon);
-
+		ruleButton.setBounds(700, 370, 272, 73);
+		ruleButton.setContentAreaFilled(false);
+		ruleButton.setIcon(iconRule);
+		ruleButton.setRolloverIcon(iconRuleEntered);
 		ruleButton.addMouseListener(this);
 		return ruleButton;
 	}
 
 	public JButton createBeginButton() {
 		startButton = new JButton();
-		ImageIcon icon = new ImageIcon("Graphics/Button/按钮开始.png");
 		startButton.setBorder(null);
-		startButton.setBounds(660, 285, 162, 56);
-		startButton.setIcon(icon);
-
+		startButton.setBounds(700, 285, 200, 56);
+		startButton.setContentAreaFilled(false);
+		startButton.setIcon(iconStart);
+		startButton.setRolloverIcon(iconStartEntered);
 		startButton.addMouseListener(this);
 		return startButton;
 	}
