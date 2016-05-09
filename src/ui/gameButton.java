@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import music.Player;
-
+/**
+ * 重复代码有点多，有空优化
+ **/
 public class gameButton extends MouseAdapter{
 	ImageIcon iconExit = new ImageIcon("Graphics/Button/exit.png");
 	ImageIcon iconTeam = new ImageIcon("Graphics/Button缩小版/制作团队（小）.png");
@@ -19,6 +21,7 @@ public class gameButton extends MouseAdapter{
 	ImageIcon iconStartEntered = new ImageIcon("Graphics/Button/开始（大）.png");
 	ImageIcon iconRuleEntered = new ImageIcon("Graphics/Button/游戏规则（大）.png");
 	ImageIcon iconTeamEntered = new ImageIcon("Graphics/Button/制作团队（大）.png");
+	ImageIcon iconBack = new ImageIcon("Graphics/Button/退出.png");
 	
 	
 	public JButton startButton;
@@ -83,28 +86,31 @@ public class gameButton extends MouseAdapter{
 
 
 	public JButton createStartBackButton() {
-		startBackButton = new JButton("back");
+		startBackButton = new JButton();
 		startBackButton.setBorder(null);
-		startBackButton.setBounds(1000, 50, 167, 72);
-
+		startBackButton.setBounds(1000,400,224,336);
+		startBackButton.setContentAreaFilled(false);
+		startBackButton.setIcon(iconBack);
 		startBackButton.addMouseListener(this);
 		return startBackButton;
 	}
 
 	public JButton createRuleBackButton() {
-		ruleBackButton = new JButton("back");
+		ruleBackButton = new JButton();
 		ruleBackButton.setBorder(null);
-		ruleBackButton.setBounds(1000, 50, 167, 72);
-
+		ruleBackButton.setBounds(1000, 50, 224, 336);
+		ruleBackButton.setContentAreaFilled(false);
+		ruleBackButton.setIcon(iconBack);
 		ruleBackButton.addMouseListener(this);
 		return ruleBackButton;
 	}
 
 	public JButton createTeamBackButton() {
-		teamBackButton = new JButton("back");
+		teamBackButton = new JButton();
 		teamBackButton.setBorder(null);
-		teamBackButton.setBounds(1000, 50, 167, 72);
-
+		teamBackButton.setBounds(1000, 450, 224,336);
+		teamBackButton.setContentAreaFilled(false);
+		teamBackButton.setIcon(iconBack);
 		teamBackButton.addMouseListener(this);
 		return teamBackButton;
 	}
@@ -116,14 +122,17 @@ public class gameButton extends MouseAdapter{
 			con.add(frame.mapPanel);
 			con.revalidate();
 			con.repaint();
-			Player.playSound("amaprollover");
+			Player.stopMusic();
+			Player.playMusic("home");
 			}
 		if (e.getSource() == startBackButton || e.getSource() == ruleBackButton
 				|| e.getSource() == teamBackButton) {
 			con.removeAll();
-			con.add(frame.firstPanel);
+			con.add(frame.mainPanel);
 			con.revalidate();
 			con.repaint();
+			Player.stopMusic();
+			Player.playMusic("EXO");
 		}
 		if (e.getSource() == ruleButton) {
 			con.removeAll();

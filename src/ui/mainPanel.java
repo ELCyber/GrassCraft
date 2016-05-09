@@ -1,18 +1,26 @@
 ﻿package ui;
 
-import java.awt.Graphics;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/*
+ * 主界面背景图，gif格式，同样适用JLabel实现
+ */
 public class mainPanel extends JPanel{
-	 public static final Image UI=new ImageIcon("Graphics/开始界面4.0.png").getImage();
+	private static final long serialVersionUID = 1L;
+	public static final ImageIcon BG=new ImageIcon("Graphics/主面板.gif");
+	 JLabel backgroundLabel;
 	 
-     @Override
-     public void paintComponent(Graphics g){
-        g.drawImage( UI, 0, 0,1200,700,null); 
-   }
+	 public mainPanel(){
+		 backgroundLabel= new JLabel(BG);
+		 backgroundLabel.setBounds(0, 0, BG.getIconWidth(), BG.getIconHeight());
+	 	 this.add(backgroundLabel);
+	 }
+//     @Override
+//     public void paintComponent(Graphics g){
+//        //g.drawImage(UI, 0, 0,this); 
+//   }
 }
 
 

@@ -2,7 +2,9 @@ package music;
 
 import java.io.File;
 import saint.media.SimplePlayer;
-
+/**
+ * 使用第三方jar包实现的音乐播放器
+ */
 public class Player {
 	
 	private static SimplePlayer musicPlayer = null;

@@ -24,7 +24,7 @@ public class GameControl {
 	// 移动：原理（交换地图数组数值）
 	
 	// 判断血量是否为0
-	public boolean isDied(){
+	public boolean isDead(){
 		return false;
 	}
 	
