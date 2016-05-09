@@ -16,7 +16,7 @@ public class PlayerControl implements KeyListener, MouseListener{
 	}
 
 	
-	// 实现基本的上下左右、攻击、确认 等 键盘 操作 and 重新开始游戏、返回主界面、退出游戏等 鼠标 操作
+	// 实现基本的上下左右、攻击（注意有四个方向，所以是四个按键WASD）、确认 等 键盘 操作 and 重新开始游戏、返回主界面、退出游戏等 鼠标 操作
 	// 判断的时候引用gameControl来判断，注意Enter
 	
 
@@ -68,7 +68,7 @@ public class PlayerControl implements KeyListener, MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	// 重写哦，里面代码（或思想）提供了一些思路，所以没改动，暂时会报错
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {

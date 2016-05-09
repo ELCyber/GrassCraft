@@ -26,7 +26,7 @@ public class FrameGame extends JFrame {
 	public JPanel rulePanel;
 	public JPanel teamPanel;
 	public JPanel mapPanel;
-	/*
+	/**
 	 * 开场动画
 	 */
 	private JLabel openingJLabel;
