@@ -132,7 +132,7 @@ public class gameButton extends MouseAdapter{
 			con.revalidate();
 			con.repaint();
 			Player.stopMusic();
-			Player.playMusic("EXO");
+			Player.playMusic("十二月的奇迹");
 		}
 		if (e.getSource() == ruleButton) {
 			con.removeAll();
