@@ -24,7 +24,9 @@ public class GameInfo {
 		return this.grassmans;
 	}
 	
-
+    public void setTurns(){
+    	turns++;
+    }
 	
 
 

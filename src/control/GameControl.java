@@ -11,7 +11,7 @@ public class GameControl {
 	private Grassman[] mans;
 	private GameInfo info;
 	private Grassman man;
-
+ 
 	public GameControl(mapPanel mapP, Grassman[] mans, GameInfo info) {
 		// 初始化，传入第一个grassman及所有grassman数组；
 		this.mapP = mapP;
@@ -38,8 +38,7 @@ public class GameControl {
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) 
-				|| this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -55,8 +54,7 @@ public class GameControl {
 		man.setY(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) 
-				|| this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -72,8 +70,7 @@ public class GameControl {
 		man.setX(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) 
-				|| this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -89,8 +86,7 @@ public class GameControl {
 		man.setX(1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) 
-				|| this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -121,33 +117,54 @@ public class GameControl {
 
 	// 确认：判断是否回合完毕，若未， 回合+1
 	public int KeyEnter() {
+		if (this.isGameover()) {
+			// 游戏结束；
+			return 1;
+		}
+		info.setTurns();
+        this.getNextPlayer();
 		return 0;
 	}
 
 	// Turn control， 控制权交给下一个人，判断turn
-	public int getNextPlayer() {
-		return 0;
+	public void getNextPlayer() {
+		man = mans[this.isWhoseTurn()];
+		// return 0;
 	}
 
-	// 判断回合的两个方法
-	// public boolean isGameover(){
-	// if(info.getTurns() == 96)
-	// return true;
-	// else
-	// return false;
-	// }
-	//
-	// public int isWhoseTurn(){
-	// switch(info.getTurns() % 12){
-	// case 1 | 8 : System.out.println("A1's turn."); return 0;
-	// case 2 | 7 : System.out.println("A2's turn."); return 3;
-	// case 4 | 9 : System.out.println("B1's turn."); return 1;
-	// case 3 | 10 : System.out.println("B2's turn."); return 4;
-	// case 0 | 5 : System.out.println("C1's turn."); return 2;
-	// case 6 | 11 : System.out.println("C2's turn."); return 5;
-	// default : System.out.println("Error!"); return -1;
-	// }
-	// }
+	// 判断回合的两个方法；
+	public boolean isGameover() {
+		if (info.getTurns() == 96)
+			return true;
+		else
+			return false;
+	}
+
+	public int isWhoseTurn() {
+		switch (info.getTurns() % 12) {
+		case 1 | 8:
+			System.out.println("A1's turn.");
+			return 0;
+		case 2 | 7:
+			System.out.println("A2's turn.");
+			return 3;
+		case 4 | 9:
+			System.out.println("B1's turn.");
+			return 1;
+		case 3 | 10:
+			System.out.println("B2's turn.");
+			return 4;
+		case 0 | 5:
+			System.out.println("C1's turn.");
+			return 2;
+		case 6 | 11:
+			System.out.println("C2's turn.");
+			return 5;
+		default:
+			System.out.println("Error!");
+			return -1;
+		}
+	}
 
 	// 各种判断的方法
 	public boolean isOverZone(int newX, int newY) {
