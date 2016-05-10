@@ -86,19 +86,16 @@ public class FrameGame extends JFrame {
 	class OpeningThread extends Thread {
 		public void run() {
 			try {
-<<<<<<< HEAD
 				// 开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
-				sleep(10000);
+				sleep(0);
 				if (!isaddMovie) {
 					System.out.println("显示");
 					// 关闭开场动画
-=======
 				 //开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
 				 sleep(4000);
 				 if(!isaddMovie){
 				 System.out.println("显示");
 					//关闭开场动画
->>>>>>> origin/master
 					openingJLabel.setVisible(false);
 					// 初始化面板
 					initPanel();
@@ -107,11 +104,11 @@ public class FrameGame extends JFrame {
 				}
 				// 移除frame的键盘监听
 				FrameGame.this.addKeyListener(null);
-			} catch (InterruptedException e) {
+			} }catch (InterruptedException e) {
 				// e.printStackTrace();
 			}
 
-		}
+			}
 	}
 
 	/*
