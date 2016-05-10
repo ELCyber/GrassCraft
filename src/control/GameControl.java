@@ -38,7 +38,7 @@ public class GameControl {
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -54,7 +54,7 @@ public class GameControl {
 		man.setY(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -70,7 +70,7 @@ public class GameControl {
 		man.setX(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -86,7 +86,7 @@ public class GameControl {
 		man.setX(1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.cannotMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -185,16 +185,16 @@ public class GameControl {
 		return false;
 	}
 
-	public boolean cannotMove() {
-		if (this.man.getCure() < 2) {
+	public boolean canMove() {
+		if (this.man.getCure() >= 2) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public boolean cannotOffend() {
-		if (this.man.getCure() < 4) {
+	public boolean canOffend() {
+		if (this.man.getCure() >= 4) {
 			return true;
 		} else {
 			return false;
