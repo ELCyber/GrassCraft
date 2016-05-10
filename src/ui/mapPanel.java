@@ -13,6 +13,11 @@ import dto.Grassman;
 public class mapPanel extends JPanel {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	static ImageIcon back = new ImageIcon("Graphics/gameBG.jpeg");
 
 	static Image im = back.getImage();
