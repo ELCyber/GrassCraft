@@ -44,6 +44,7 @@ public class gameButton extends MouseAdapter{
 		exitGameButton.setBorder(null);
 		exitGameButton.setBounds(1000, 50, 140, 120);
 		exitGameButton.setContentAreaFilled(false);
+		exitGameButton.setBorderPainted(false);
 		exitGameButton.setIcon(iconExit);
 		exitGameButton.setRolloverIcon(iconExitEntered);
 		exitGameButton.setPressedIcon(iconExitClicked);
@@ -56,6 +57,7 @@ public class gameButton extends MouseAdapter{
 		teamButton.setBorder(null);
 		teamButton.setBounds(680, 480, 260, 68);
 		teamButton.setContentAreaFilled(false);
+		teamButton.setBorderPainted(false);
 		teamButton.setIcon(iconTeam);
 		teamButton.setRolloverIcon(iconTeamEntered);
 		teamButton.addMouseListener(this);
@@ -66,6 +68,7 @@ public class gameButton extends MouseAdapter{
 		ruleButton = new JButton();
 		ruleButton.setBorder(null);
 		ruleButton.setBounds(700, 370, 272, 73);
+		ruleButton.setBorderPainted(false);
 		ruleButton.setContentAreaFilled(false);
 		ruleButton.setIcon(iconRule);
 		ruleButton.setRolloverIcon(iconRuleEntered);
@@ -78,6 +81,7 @@ public class gameButton extends MouseAdapter{
 		startButton.setBorder(null);
 		startButton.setBounds(700, 285, 200, 56);
 		startButton.setContentAreaFilled(false);
+		startButton.setBorderPainted(false);
 		startButton.setIcon(iconStart);
 		startButton.setRolloverIcon(iconStartEntered);
 		startButton.addMouseListener(this);
@@ -90,6 +94,7 @@ public class gameButton extends MouseAdapter{
 		startBackButton.setBorder(null);
 		startBackButton.setBounds(1000,400,224,336);
 		startBackButton.setContentAreaFilled(false);
+		startBackButton.setBorderPainted(false);
 		startBackButton.setIcon(iconBack);
 		startBackButton.addMouseListener(this);
 		return startBackButton;
@@ -100,6 +105,7 @@ public class gameButton extends MouseAdapter{
 		ruleBackButton.setBorder(null);
 		ruleBackButton.setBounds(1000, 50, 224, 336);
 		ruleBackButton.setContentAreaFilled(false);
+		ruleBackButton.setBorderPainted(false);
 		ruleBackButton.setIcon(iconBack);
 		ruleBackButton.addMouseListener(this);
 		return ruleBackButton;
@@ -110,6 +116,7 @@ public class gameButton extends MouseAdapter{
 		teamBackButton.setBorder(null);
 		teamBackButton.setBounds(1000, 450, 224,336);
 		teamBackButton.setContentAreaFilled(false);
+		teamBackButton.setBorderPainted(false);
 		teamBackButton.setIcon(iconBack);
 		teamBackButton.addMouseListener(this);
 		return teamBackButton;
