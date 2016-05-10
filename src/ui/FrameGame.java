@@ -20,7 +20,7 @@ public class FrameGame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public Container con;
 	public static Image cursorpng = new ImageIcon("Graphics/cursor.png").getImage();
-	public ImageIcon openingIcon = new ImageIcon("Graphics/opening.gif");
+	public ImageIcon openingIcon = new ImageIcon("Graphics/开场动画hiki2.gif");
 	public JPanel mainPanel;
 	public JPanel rulePanel;
 	public JPanel teamPanel;
@@ -86,11 +86,19 @@ public class FrameGame extends JFrame {
 	class OpeningThread extends Thread {
 		public void run() {
 			try {
+<<<<<<< HEAD
 				// 开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
 				sleep(10000);
 				if (!isaddMovie) {
 					System.out.println("显示");
 					// 关闭开场动画
+=======
+				 //开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
+				 sleep(4000);
+				 if(!isaddMovie){
+				 System.out.println("显示");
+					//关闭开场动画
+>>>>>>> origin/master
 					openingJLabel.setVisible(false);
 					// 初始化面板
 					initPanel();

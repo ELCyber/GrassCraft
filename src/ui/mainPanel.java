@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  */
 public class mainPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	public static final ImageIcon BG=new ImageIcon("Graphics/主面板.gif");
+	public static final ImageIcon BG=new ImageIcon("Graphics/开始界面非主流版本循环.gif");
 	 JLabel backgroundLabel;
 	 
 	 public mainPanel(){
