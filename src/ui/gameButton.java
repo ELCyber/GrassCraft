@@ -8,22 +8,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import music.Player;
+
 /**
  * 重复代码有点多，有空优化
  **/
-public class gameButton extends MouseAdapter{
+public class gameButton extends MouseAdapter {
 	ImageIcon iconExit = new ImageIcon("Graphics/Button/exit.png");
 	ImageIcon iconTeam = new ImageIcon("Graphics/Button缩小版/制作团队（小）.png");
 	ImageIcon iconRule = new ImageIcon("Graphics/Button缩小版/游戏规则(小).png");
-	ImageIcon iconStart= new ImageIcon("Graphics/Button缩小版/开始（小）.png");
+	ImageIcon iconStart = new ImageIcon("Graphics/Button缩小版/开始（小）.png");
 	ImageIcon iconExitEntered = new ImageIcon("Graphics/Button/exitentered.png");
 	ImageIcon iconExitClicked = new ImageIcon("Graphics/Button/exitclicked.png");
 	ImageIcon iconStartEntered = new ImageIcon("Graphics/Button/开始（大）.png");
 	ImageIcon iconRuleEntered = new ImageIcon("Graphics/Button/游戏规则（大）.png");
 	ImageIcon iconTeamEntered = new ImageIcon("Graphics/Button/制作团队（大）.png");
 	ImageIcon iconBack = new ImageIcon("Graphics/Button/退出.png");
-	
-	
+
 	public JButton startButton;
 	public JButton ruleButton;
 	public JButton teamButton;
@@ -31,14 +31,16 @@ public class gameButton extends MouseAdapter{
 	public JButton teamBackButton;
 	public JButton startBackButton;
 	public JButton exitGameButton;
-	
+
 	public Container con;
 	FrameGame frame;
-	public gameButton(FrameGame frame){
-		
-		this.frame=frame;
-		con=frame.getContentPane();
+
+	public gameButton(FrameGame frame) {
+
+		this.frame = frame;
+		con = frame.getContentPane();
 	}
+
 	public JButton createExitButton() {
 		exitGameButton = new JButton();
 		exitGameButton.setBorder(null);
@@ -51,7 +53,7 @@ public class gameButton extends MouseAdapter{
 		exitGameButton.addMouseListener(this);
 		return exitGameButton;
 	}
-	
+
 	public JButton createTeamButton() {
 		teamButton = new JButton();
 		teamButton.setBorder(null);
@@ -88,11 +90,10 @@ public class gameButton extends MouseAdapter{
 		return startButton;
 	}
 
-
 	public JButton createStartBackButton() {
 		startBackButton = new JButton();
 		startBackButton.setBorder(null);
-		startBackButton.setBounds(1000,400,224,336);
+		startBackButton.setBounds(1000, 400, 224, 336);
 		startBackButton.setContentAreaFilled(false);
 		startBackButton.setBorderPainted(false);
 		startBackButton.setIcon(iconBack);
@@ -114,26 +115,38 @@ public class gameButton extends MouseAdapter{
 	public JButton createTeamBackButton() {
 		teamBackButton = new JButton();
 		teamBackButton.setBorder(null);
-		teamBackButton.setBounds(1000, 450, 224,336);
+		teamBackButton.setBounds(1000, 450, 224, 336);
 		teamBackButton.setContentAreaFilled(false);
 		teamBackButton.setBorderPainted(false);
 		teamBackButton.setIcon(iconBack);
 		teamBackButton.addMouseListener(this);
 		return teamBackButton;
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == startButton) {
+			con.removeAll();
+			/*con.add(new ChangePanel());
+			con.revalidate();
+			con.repaint();*/
+			try {
+				con.add(new ChangePanel());
+				con.revalidate();
+				con.repaint();
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			con.removeAll();
 			con.add(frame.mapPanel);
 			con.revalidate();
 			con.repaint();
 			Player.stopMusic();
 			Player.playMusic("home");
-			}
-		if (e.getSource() == startBackButton || e.getSource() == ruleBackButton
-				|| e.getSource() == teamBackButton) {
+		}
+		if (e.getSource() == startBackButton || e.getSource() == ruleBackButton || e.getSource() == teamBackButton) {
 			con.removeAll();
 			con.add(frame.mainPanel);
 			con.revalidate();
@@ -152,8 +165,8 @@ public class gameButton extends MouseAdapter{
 			con.add(frame.teamPanel);
 			con.revalidate();
 			con.repaint();
-        }	
-		if(e.getSource() == exitGameButton){
+		}
+		if (e.getSource() == exitGameButton) {
 			System.exit(0);
 		}
 	}

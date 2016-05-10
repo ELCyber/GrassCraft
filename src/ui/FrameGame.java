@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class FrameGame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public Container con;
@@ -31,49 +30,49 @@ public class FrameGame extends JFrame {
 	 */
 	private JLabel openingJLabel;
 	OpeningThread openingThread = new OpeningThread();
-	private boolean isaddMovie=false;
+	private boolean isaddMovie = false;
 	/**
 	 * 实现移动
 	 */
-    private boolean moving;
-    private int nowX;
-    private int nowY;
+	private boolean moving;
+	private int nowX;
+	private int nowY;
 	private gameButton gB;
 	private Cursor cursor;
-	
+
 	public FrameGame() {
-		//去除窗体边框
+		// 去除窗体边框
 		this.setUndecorated(true);
 		this.setTitle("GrassCraft");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
-		//设置窗体大小，使窗体居中并设置图标
+
+		// 设置窗体大小，使窗体居中并设置图标
 		this.setSize(1200, 700);
-		//窗体居中方法,之前util里的文件便可删除
+		// 窗体居中方法,之前util里的文件便可删除
 		this.setLocationRelativeTo(null);
-		//TODO 窗体图标，即任务栏图标，暂时找不到好的图标，用鼠标的草代替
-	  	this.setIconImage(cursorpng);
-	  	
-		//设置鼠标
-		cursor= Toolkit.getDefaultToolkit().createCustomCursor(cursorpng, new Point(0,0), "mycursor");
+		// TODO 窗体图标，即任务栏图标，暂时找不到好的图标，用鼠标的草代替
+		this.setIconImage(cursorpng);
+
+		// 设置鼠标
+		cursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorpng, new Point(0, 0), "mycursor");
 		this.setCursor(cursor);
-		
-		//获得Button引用,并传入当前frame引用
-		gB=new gameButton(this);
-		//获得frame的面板
+
+		// 获得Button引用,并传入当前frame引用
+		gB = new gameButton(this);
+		// 获得frame的面板
 		con = this.getContentPane();
-		
-   	    //用JLabel实现开场动画并调用方法
+
+		// 用JLabel实现开场动画并调用方法
 		openingJLabel = new JLabel(openingIcon);
-		openingJLabel.setBounds(0, 0, openingIcon.getIconWidth(),openingIcon.getIconHeight());
+		openingJLabel.setBounds(0, 0, openingIcon.getIconWidth(), openingIcon.getIconHeight());
 		this.add(openingJLabel);
 		this.setVisible(true);
-		//加载开场动画
+		// 加载开场动画
 		this.addMovie();
-		
+
 		// 实现窗体移动
-	  	this.setMove();
+		this.setMove();
 	}
 
 	/*
@@ -83,51 +82,50 @@ public class FrameGame extends JFrame {
 		openingThread.start();
 		this.addKeyListener(new openKeyListener());
 	}
-	
+
 	class OpeningThread extends Thread {
 		public void run() {
 			try {
-				 //开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
-				 sleep(10000);
-				 if(!isaddMovie){
-				 System.out.println("显示");
-					//关闭开场动画
+				// 开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
+				sleep(10000);
+				if (!isaddMovie) {
+					System.out.println("显示");
+					// 关闭开场动画
 					openingJLabel.setVisible(false);
-					//初始化面板
+					// 初始化面板
 					initPanel();
-					//如果开场动画后面板显示不出来，就调用下面的方法，现在初步判断opening.gif出现的情况是gif文件与frame大小不一致
+					// 如果开场动画后面板显示不出来，就调用下面的方法，现在初步判断opening.gif出现的情况是gif文件与frame大小不一致
 					FrameGame.this.setVisible(true);
-				 }
-				    //移除frame的键盘监听
-					FrameGame.this.addKeyListener(null);
+				}
+				// 移除frame的键盘监听
+				FrameGame.this.addKeyListener(null);
 			} catch (InterruptedException e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 
 		}
 	}
-	
+
 	/*
 	 * 内部类，实现开场动画的键盘监听,用于跳过开场动画，有空写到别的类里
 	 */
-	
+
 	class openKeyListener extends KeyAdapter {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_ESCAPE
-					|| e.getKeyCode() == KeyEvent.VK_ENTER
+			if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_ENTER
 					|| e.getKeyCode() == KeyEvent.VK_SPACE) {
 				openingJLabel.setVisible(false);
 				initPanel();
 				FrameGame.this.setVisible(true);
-				isaddMovie=true;
+				isaddMovie = true;
 			}
 
 		}
 
-
 	}
+
 	/**
 	 * 初始化面板
 	 */
@@ -137,52 +135,54 @@ public class FrameGame extends JFrame {
 		initTeamPanel();
 		initMapPanel();
 	}
+
 	/**
 	 * 实现窗体移动,因为frame去除了边框
 	 */
 	private void setMove() {
-        this.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-            	if (e.getY() < 35) {
-            		moving = true;
-                    requestFocus();
-                    nowX = e.getX();
-                    nowY = e.getY();
-            	}
-            }
-            public void mouseReleased(MouseEvent e) {
-            	if (e.getY() < 35) {
-            		moving = false;
-            	}
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            	if (e.getY() < 35) {
-                   // setIn(true);
-            	}
-            }
-        });
-        this.addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseDragged(MouseEvent e) {
-                if (moving) {
-                    int left = getLocation().x;
-                    int top = getLocation().y;
-                    FrameGame.this.setLocation(left + e.getX() - nowX, top + e.getY() - nowY);
-                }
-            }
-        });
+		this.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.getY() < 35) {
+					moving = true;
+					requestFocus();
+					nowX = e.getX();
+					nowY = e.getY();
+				}
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				if (e.getY() < 35) {
+					moving = false;
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if (e.getY() < 35) {
+					// setIn(true);
+				}
+			}
+		});
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				if (moving) {
+					int left = getLocation().x;
+					int top = getLocation().y;
+					FrameGame.this.setLocation(left + e.getX() - nowX, top + e.getY() - nowY);
+				}
+			}
+		});
 	}
 
 	private void initMainPanel() {
 		mainPanel = new mainPanel();
 		con.add(mainPanel);
 		mainPanel.setLayout(null);
-		mainPanel.add(gB.createExitButton(),0);
-		mainPanel.add(gB.createBeginButton(),0);
-		mainPanel.add(gB.createRuleButton(),0);
-		mainPanel.add(gB.createTeamButton(),0);
+		mainPanel.add(gB.createExitButton(), 0);
+		mainPanel.add(gB.createBeginButton(), 0);
+		mainPanel.add(gB.createRuleButton(), 0);
+		mainPanel.add(gB.createTeamButton(), 0);
 	}
-
 
 	private void initRulePanel() {
 		rulePanel = new rulePanel();
@@ -201,7 +201,6 @@ public class FrameGame extends JFrame {
 		mapPanel.setLayout(null);
 		mapPanel.add(gB.createStartBackButton());
 	}
-
 
 
 }
