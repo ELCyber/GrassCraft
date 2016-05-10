@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /*
- * 主界面背景图，gif格式，同样适用JLabel实现
+ * 主界面背景图，gif格式，同样是用JLabel实现
  */
 public class mainPanel extends JPanel{
 	private static final long serialVersionUID = 1L;

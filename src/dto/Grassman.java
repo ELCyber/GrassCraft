@@ -61,13 +61,20 @@ public class Grassman {
 	}
 
 	public int getXPosition() {
-		return x;
+		return this.x;
 	}
 
 	public int getYPosition() {
-		return y;
+		return this.y;
 	}
 
+	public int getBlood(){
+		return this.blood;
+	}
+	
+	public int getCure(){
+		return this.cure;
+	}
 
 //  提供基本的操作，让GameControl引用（ 上下左右移动
 	public void setX(int i) {
