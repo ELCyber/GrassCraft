@@ -89,22 +89,18 @@ public class FrameGame extends JFrame {
 				// 开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
 				sleep(0);
 				if (!isaddMovie) {
-					System.out.println("显示");
-					// 关闭开场动画
 				 //开场动画样本是10000ms,想跳过的话直接按ESC|SPACE|ENTER
 				 sleep(4000);
-				 if(!isaddMovie){
-				 System.out.println("显示");
 					//关闭开场动画
 					openingJLabel.setVisible(false);
 					// 初始化面板
 					initPanel();
 					// 如果开场动画后面板显示不出来，就调用下面的方法，现在初步判断opening.gif出现的情况是gif文件与frame大小不一致
 					FrameGame.this.setVisible(true);
-				}
 				// 移除frame的键盘监听
 				FrameGame.this.addKeyListener(null);
-			} }catch (InterruptedException e) {
+			}
+				}catch (InterruptedException e) {
 				// e.printStackTrace();
 			}
 
