@@ -38,7 +38,7 @@ public class GameControl {
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) ) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -54,7 +54,7 @@ public class GameControl {
 		man.setY(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) ) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setY(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -70,7 +70,7 @@ public class GameControl {
 		man.setX(-1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) ) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
@@ -86,7 +86,7 @@ public class GameControl {
 		man.setX(1);
 		info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
 		if (this.isOverZone(man.getXPosition(), man.getYPosition())
-				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) || this.canMove()) {
+				|| this.isCrashed(man.getXPosition(), man.getYPosition(), mans) ) {
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 0;
 			man.setX(-1);
 			info.map[this.man.getXPosition()][this.man.getYPosition()] = 1;
