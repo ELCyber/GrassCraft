@@ -31,12 +31,13 @@ public class gameButton extends MouseAdapter {
 	public JButton teamBackButton;
 	public JButton startBackButton;
 	public JButton exitGameButton;
+	public JButton reStartButton;
+	public JButton exitMapGameButton;
 
 	public Container con;
 	FrameGame frame;
 
 	public gameButton(FrameGame frame) {
-
 		this.frame = frame;
 		con = frame.getContentPane();
 	}
@@ -89,18 +90,49 @@ public class gameButton extends MouseAdapter {
 		startButton.addMouseListener(this);
 		return startButton;
 	}
-
+/**
+ * mapPanel上的按钮
+ * @return
+ */
+	//TODO 返回主界面 原图标分辨率低
 	public JButton createStartBackButton() {
 		startBackButton = new JButton();
 		startBackButton.setBorder(null);
 		startBackButton.setBounds(1000, 400, 224, 336);
-		startBackButton.setContentAreaFilled(false);
-		startBackButton.setBorderPainted(false);
+//		startBackButton.setContentAreaFilled(false);
+//		startBackButton.setBorderPainted(false);
 		startBackButton.setIcon(iconBack);
 		startBackButton.addMouseListener(this);
 		return startBackButton;
 	}
-
+	//TODO 重新开始 加图标
+	public JButton createReStartButton() {
+		reStartButton = new JButton("重新开始");
+		reStartButton.setBorder(null);
+		reStartButton.setBounds(1000, 100, 300, 300);
+		reStartButton.setContentAreaFilled(false);
+		reStartButton.setBorderPainted(false);
+//		reStartButton.setIcon(iconBack);
+		reStartButton.addMouseListener(this);
+		return reStartButton;
+	}
+	//TODO 直接退出游戏，暂用主界面的退出游戏按钮
+	public JButton createMapExitButton() {
+		exitMapGameButton = new JButton();
+		exitMapGameButton.setBorder(null);
+		exitMapGameButton.setBounds(1000, 50, 140, 120);
+		exitMapGameButton.setContentAreaFilled(false);
+		exitMapGameButton.setBorderPainted(false);
+		exitMapGameButton.setIcon(iconExit);
+		exitMapGameButton.setRolloverIcon(iconExitEntered);
+		exitMapGameButton.setPressedIcon(iconExitClicked);
+		exitMapGameButton.addMouseListener(this);
+		return exitMapGameButton;
+	}
+/**
+ * rulePanel上的按钮
+ * @return
+ */
 	public JButton createRuleBackButton() {
 		ruleBackButton = new JButton();
 		ruleBackButton.setBorder(null);
@@ -111,7 +143,10 @@ public class gameButton extends MouseAdapter {
 		ruleBackButton.addMouseListener(this);
 		return ruleBackButton;
 	}
-
+/**
+ * teamPanel上的按钮
+ * @return
+ */
 	public JButton createTeamBackButton() {
 		teamBackButton = new JButton();
 		teamBackButton.setBorder(null);
@@ -126,19 +161,6 @@ public class gameButton extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == startButton) {
-			con.removeAll();
-			/*con.add(new ChangePanel());
-			con.revalidate();
-			con.repaint();*/
-			try {
-				con.add(new ChangePanel());
-				con.revalidate();
-				con.repaint();
-				Thread.sleep(2000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			con.removeAll();
 			con.add(frame.mapPanel);
 			con.revalidate();
@@ -166,8 +188,12 @@ public class gameButton extends MouseAdapter {
 			con.revalidate();
 			con.repaint();
 		}
-		if (e.getSource() == exitGameButton) {
+		if (e.getSource() == exitGameButton||e.getSource() == exitMapGameButton) {
 			System.exit(0);
+		}
+		//mapPanel的重新开始按钮
+		if(e.getSource() == reStartButton){
+			
 		}
 	}
 

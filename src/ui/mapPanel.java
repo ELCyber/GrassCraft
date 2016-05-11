@@ -8,14 +8,10 @@ import javax.swing.JPanel;
 
 import control.GameControl;
 import control.PlayerControl;
+import dto.GameInfo;
 import dto.Grassman;
 
 public class mapPanel extends JPanel {
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	static ImageIcon back = new ImageIcon("Graphics/gameBG.jpeg");
@@ -26,14 +22,24 @@ public class mapPanel extends JPanel {
 	public int[][] yPosition = new int[10][10];
 	public int x;
 	public int y;
-	Grassman[] mans = new Grassman[6];
+	public Grassman[] mans = new Grassman[6];
+	public GameInfo info;
+	public int[][] map;
 	public mapPanel() {
 		 //man0 = new Grassman(0);
 		//test
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
 		}
-		GameControl gameControl=new GameControl(this,mans,null);
+		//初始化地块
+				for (int x = 0; x < 10; x++) {
+					for (int y = 0; y < 10; y++) {
+						blocks[x][y] = new Block();
+					}
+				}
+		map=new int[10][10];
+		info=new GameInfo(96,mans,map);
+		GameControl gameControl=new GameControl(this,mans,info);
 		PlayerControl playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
 	}
@@ -43,12 +49,7 @@ public class mapPanel extends JPanel {
 		//绘制背景
 		g.drawImage(im, 0, 0, getWidth(), getHeight(), this);
 		this.requestFocus();
-		//初始化地块
-		for (int x = 0; x < 10; x++) {
-			for (int y = 0; y < 10; y++) {
-				blocks[x][y] = new Block();
-			}
-		}
+		
 		blocks[3][6].changeColor(1);
 		blocks[4][7].changeColor(2);
 		blocks[7][6].changeColor(1);

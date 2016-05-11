@@ -1,6 +1,5 @@
 package control;
 
-import Logi.TurnCounter;
 import dto.GameInfo;
 import dto.Grassman;
 import ui.mapPanel;
@@ -98,21 +97,16 @@ public class GameControl {
 	}
 
 	// 攻击：判断：体力值 是不是攻击到（涉及到对成员数组的操作）
-	public boolean KeyOffendUp() {
-
-		return false;
+	public void KeyOffendUp() {
 	}
 
-	public boolean KeyOffendDown() {
-		return false;
+	public void KeyOffendDown() {
 	}
 
-	public boolean KeyOffendLeft() {
-		return false;
+	public void KeyOffendLeft() {
 	}
 
-	public boolean KeyOffendRight() {
-		return false;
+	public void KeyOffendRight() {
 	}
 
 	// 确认：判断是否回合完毕，若未， 回合+1
