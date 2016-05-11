@@ -39,6 +39,8 @@ public class mapPanel extends JPanel {
 				}
 		//初始化地图，因为攻击的范围使得
 		//info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]		
+		//会出现IndexOutOfBoundsException 在gamecontrol需增加判断
+	    map=new int[10][10];
 		info=new GameInfo(1,mans,map);
 		GameControl gameControl=new GameControl(this,mans,info);
 		PlayerControl playControl=new PlayerControl(gameControl);
