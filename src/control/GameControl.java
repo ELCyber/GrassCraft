@@ -42,6 +42,7 @@ public class GameControl {
 			this.mapP.repaint();
 		}
 		info.map[this.man.getXPosition()][this.man.getYPosition()] =this.numOfMan()+1;
+		System.out.println(this.numOfMan()+1);
 	}
 
 	public void KeyDown() {
@@ -91,16 +92,16 @@ public class GameControl {
 	//方向坐标旋转
 	/*
 	 * if (direction == 0){
-	    res[0] = x0;
-	    res[1] = y0;              //向下
+	    res[0] = -x0;
+	    res[1] = -y0;              //向下
 	}
 	if (direction == 1){
 	    res[0] = y0;       
 	    res[1] = -x0;             //向右
 	}
 	if (direction == 2){
-	    res[0] = -x0;
-	    res[1] = -y0;             //向上
+	    res[0] = x0;
+	    res[1] = y0;             //向上
 	}
 	if (direction == 3){
 	    res[0] = -y0;
@@ -110,7 +111,38 @@ public class GameControl {
 	public void KeyOffendUp() {
 		for (int i = 0; i < 6; i++) {
 			if(man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0){
-				if(xPosition - man.getOx()[this.judgeWeapon()][i]<0
+				if(xPosition + man.getOx()[this.judgeWeapon()][i]<0
+						||xPosition + man.getOx()[this.judgeWeapon()][i]>9
+						||yPosition + man.getOy()[this.judgeWeapon()][i]<0
+						||yPosition + man.getOy()[this.judgeWeapon()][i]>9){
+					continue;
+				}
+				System.out.println(this.numOfMan());
+				System.out.println((info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]));
+				System.out.println((this.numOfMan() < 3 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >= 4)));
+//					|| this.numOfMan() > 2 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] < 4)
+//					&&(info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >0));
+				if((this.numOfMan() < 3 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >= 4))
+					|| (this.numOfMan() > 2 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] < 4)
+					&&(info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >0))
+					)
+				{
+				mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]-1].setBlood
+				(mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]-1].getBlood() - 1);
+				System.out.println(mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]-1].getManName()+"was hit");
+				System.out.println(mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]-1].getBlood());
+				}else{
+					System.out.println("攻击无效");
+				}
+			}
+		}
+		this.man.setCure(this.man.getCure() - 4);
+	}
+
+	public void KeyOffendDown() {
+		for (int i = 0; i < 6; i++) {
+			if(man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0){
+				if(xPosition -man.getOx()[this.judgeWeapon()][i]<0
 						||xPosition - man.getOx()[this.judgeWeapon()][i]>9
 						||yPosition - man.getOy()[this.judgeWeapon()][i]<0
 						||yPosition - man.getOy()[this.judgeWeapon()][i]>9){
@@ -123,32 +155,12 @@ public class GameControl {
 				{
 				mans[info.map[xPosition - man.getOx()[this.judgeWeapon()][i]][yPosition - man.getOy()[this.judgeWeapon()][i]]].setBlood
 				(mans[info.map[xPosition - man.getOx()[this.judgeWeapon()][i]][yPosition - man.getOy()[this.judgeWeapon()][i]]].getBlood() - 1);
-				System.out.println("hit");
+				System.out.println(mans[info.map[xPosition - man.getOx()[this.judgeWeapon()][i]][yPosition - man.getOy()[this.judgeWeapon()][i]]-1].getManName()+"was hit");
+				System.out.println(mans[info.map[xPosition - man.getOx()[this.judgeWeapon()][i]][yPosition - man.getOy()[this.judgeWeapon()][i]]-1].getBlood());
+				}else{
+					System.out.println("攻击无效");
 				}
-			}
-		}
-		this.man.setCure(this.man.getCure() - 4);
-	}
-
-	public void KeyOffendDown() {
-		for (int i = 0; i < 6; i++) {
-			if(man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0){
-				if(xPosition + man.getOx()[this.judgeWeapon()][i]<0
-						||xPosition + man.getOx()[this.judgeWeapon()][i]>9
-						||yPosition + man.getOy()[this.judgeWeapon()][i]<0
-						||yPosition + man.getOy()[this.judgeWeapon()][i]>9){
-					continue;
 				}
-				if((this.numOfMan() < 3 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >= 4))
-					|| this.numOfMan() > 2 && (info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] < 4)
-					&&(info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]] >0)
-					)
-				{
-				mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]].setBlood
-				(mans[info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]].getBlood() - 1);
-				System.out.println("hit");
-				}
-			}
 		}
 		this.man.setCure(this.man.getCure() - 4);
 	}
@@ -169,9 +181,12 @@ public class GameControl {
 				{
 				mans[info.map[yPosition - man.getOy()[this.judgeWeapon()][i]][xPosition + man.getOx()[this.judgeWeapon()][i]]].setBlood
 				(mans[info.map[yPosition - man.getOy()[this.judgeWeapon()][i]][xPosition + man.getOx()[this.judgeWeapon()][i]]].getBlood() - 1);
-				System.out.println("hit");
+				System.out.println(mans[info.map[yPosition - man.getOy()[this.judgeWeapon()][i]][xPosition + man.getOx()[this.judgeWeapon()][i]]-1].getManName()+"was hit");
+				System.out.println(mans[info.map[yPosition - man.getOy()[this.judgeWeapon()][i]][xPosition + man.getOx()[this.judgeWeapon()][i]]-1].getBlood());
+				}else{
+					System.out.println("攻击无效");
 				}
-			}
+				}
 		}
 
 		this.man.setCure(this.man.getCure() - 4);
@@ -193,7 +208,10 @@ public class GameControl {
 				{
 				mans[info.map[yPosition + man.getOy()[this.judgeWeapon()][i]][xPosition - man.getOx()[this.judgeWeapon()][i]]].setBlood
 				(mans[info.map[yPosition + man.getOy()[this.judgeWeapon()][i]][xPosition - man.getOx()[this.judgeWeapon()][i]]].getBlood() - 1);
-				System.out.println("hit");
+				System.out.println(mans[info.map[yPosition + man.getOy()[this.judgeWeapon()][i]][xPosition - man.getOx()[this.judgeWeapon()][i]]-1].getManName()+"was hit");
+				System.out.println(mans[info.map[yPosition + man.getOy()[this.judgeWeapon()][i]][xPosition - man.getOx()[this.judgeWeapon()][i]]-1].getBlood());
+				}else{
+					System.out.println("攻击无效");
 				}
 			}
 		}
@@ -204,7 +222,7 @@ public class GameControl {
 	// 确认：判断是否回合完毕，若未， 回合+1
 	public void KeyEnter() {
 		if (this.isGameover()) {
-			// 游戏结束；
+			System.out.println("game over");
 		}
 		info.setTurns();
 		this.getNextPlayer();
@@ -226,7 +244,6 @@ public class GameControl {
 	}
 
 	public int isWhoseTurn() {
-		System.out.println(info.getTurns() % 12);
 		switch (info.getTurns() % 12) {
 		case 1 :
 			System.out.println("A1's turn.");
@@ -329,7 +346,7 @@ public class GameControl {
 
 	public int numOfMan() {
 		for (int i = 0; i < 6; i++) {
-			if (this.man == mans[i]) {
+			if (this.man.equals(mans[i])) {
 				return i;
 			}
 		}

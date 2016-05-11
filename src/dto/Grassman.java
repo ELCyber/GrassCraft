@@ -33,38 +33,42 @@ public class Grassman {
 		this.cure = 6;
 		switch (i) {
 		case 0:
-			manName = "Graphics/Characters/grassMan0.0.png";
+			this.manName = "Graphics/Characters/grassMan0.0.png";
 			x = 0;
 			y = 0;
 			break;
 		case 1:
-			manName = "Graphics/Characters/grassMan0.1.png";
+			this.manName = "Graphics/Characters/grassMan0.1.png";
 			x = 0;
 			y = 4;
 			break;
 		case 2:
-			manName = "Graphics/Characters/grassMan0.2.png";
+			this.manName = "Graphics/Characters/grassMan0.2.png";
 			x = 4;
 			y = 0;
 			break;
 		case 3:
-			manName = "Graphics/Characters/grassMan1.0.png";
+			this.manName = "Graphics/Characters/grassMan1.0.png";
 			x = 9;
 			y = 9;
 			break;
 		case 4:
-			manName = "Graphics/Characters/grassMan1.1.png";
+			this.manName = "Graphics/Characters/grassMan1.1.png";
 			x = 9;
 			y = 5;
 			break;
 		case 5:
-			manName = "Graphics/Characters/grassMan1.2.png";
+			this.manName = "Graphics/Characters/grassMan1.2.png";
 			x = 5;
 			y = 9;
 			break;
 		default:
 			break;
 		}
+	}
+
+	public String getManName() {
+		return this.manName;
 	}
 
 	public Image getManImage() {
@@ -118,13 +122,5 @@ public class Grassman {
 		return oy;
 	}
 
-
-	// 出界判断，移到gameControl
-	// public boolean isOverZone(int newX,int newY){
-	// if(newX<0||newX>9||newY<0||newY>9){
-	// return true;
-	// }
-	// return false;
-	// }
 
 }
