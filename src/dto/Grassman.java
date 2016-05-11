@@ -1,6 +1,5 @@
 package dto;
 
-
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -11,14 +10,27 @@ public class Grassman {
 	// public int[][] yPosition = new int[10][10];
 	private int x;
 	private int y;
-//	private int newX;
-//	private int newY;
+	// private int newX;
+	// private int newY;
 	private int blood;
 	private int cure;
+	private int[][] ox = {			
+		    {0, 0, 0, 0, 0, 0, 0},
+		    {0, 0, 1, 1, 2, 0, 0},
+		    {-1,-1,-1,0, 1, 1, 1}
+		};
+
+
+	private	int[][] oy = {
+		    {1, 2, 3, 4, 0, 0, 0},
+		    {1, 2, 0, 1, 0, 0, 0},
+		    {-1,-1,1, 1, 1,-1, 0}
+		};
+
 	
 	public Grassman(int i) {
-		int blood = 3;
-		int cure = 6;
+		this.blood = 3;
+		this.cure = 6;
 		switch (i) {
 		case 0:
 			manName = "Graphics/Characters/grassMan0.0.png";
@@ -68,15 +80,23 @@ public class Grassman {
 		return this.y;
 	}
 
-	public int getBlood(){
+	public int getBlood() {
 		return this.blood;
 	}
-	
-	public int getCure(){
+
+	public void setBlood(int blood) {
+		this.blood = blood;
+	}
+
+	public int getCure() {
 		return this.cure;
 	}
 
-//  提供基本的操作，让GameControl引用（ 上下左右移动
+	public void setCure(int cure) {
+		this.cure = cure;
+	}
+
+	// 提供基本的操作，让GameControl引用（ 上下左右移动
 	public void setX(int i) {
 		// just change x by adding i;
 		// i can be 1,-1,2,-2;
@@ -90,12 +110,21 @@ public class Grassman {
 		this.y = this.y + i;
 	}
 
-//	出界判断，移到gameControl
-//	public boolean isOverZone(int newX,int newY){
-//		if(newX<0||newX>9||newY<0||newY>9){
-//			return true;
-//		}
-//		return false;
-//	}
-	
+	public int[][] getOx() {
+		return ox;
+	}
+
+	public int[][] getOy() {
+		return oy;
+	}
+
+
+	// 出界判断，移到gameControl
+	// public boolean isOverZone(int newX,int newY){
+	// if(newX<0||newX>9||newY<0||newY>9){
+	// return true;
+	// }
+	// return false;
+	// }
+
 }
