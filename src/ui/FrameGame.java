@@ -80,7 +80,8 @@ public class FrameGame extends JFrame {
 	 */
 	public void addMovie() {
 		openingThread.start();
-		this.addKeyListener(new openKeyListener());
+		//开场动画短，这个可以注释掉了
+//		this.addKeyListener(new openKeyListener());
 	}
 
 	class OpeningThread extends Thread {
@@ -96,7 +97,7 @@ public class FrameGame extends JFrame {
 					// 如果开场动画后面板显示不出来，就调用下面的方法，现在初步判断opening.gif出现的情况是gif文件与frame大小不一致
 					FrameGame.this.setVisible(true);
 				    // 移除frame的键盘监听
-				    FrameGame.this.addKeyListener(null);
+				   // FrameGame.this.addKeyListener(null);
 			} 
 				}catch (InterruptedException e) {
 				 e.printStackTrace();
@@ -107,23 +108,24 @@ public class FrameGame extends JFrame {
 
 	/*
 	 * 内部类，实现开场动画的键盘监听,用于跳过开场动画，有空写到别的类里
+	 * 开场动画短，这个可以注释掉了
 	 */
-
-	class openKeyListener extends KeyAdapter {
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_ENTER
-					|| e.getKeyCode() == KeyEvent.VK_SPACE) {
-				openingJLabel.setVisible(false);
-				initPanel();
-				FrameGame.this.setVisible(true);
-				isaddMovie = true;
-			}
-
-		}
-
-	}
+//
+//	class openKeyListener extends KeyAdapter {
+//
+//		@Override
+//		public void keyPressed(KeyEvent e) {
+//			if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_ENTER
+//					|| e.getKeyCode() == KeyEvent.VK_SPACE) {
+//				openingJLabel.setVisible(false);
+//				initPanel();
+//				FrameGame.this.setVisible(true);
+//				isaddMovie = true;
+//			}
+//
+//		}
+//
+//	}
 
 	/**
 	 * 初始化面板

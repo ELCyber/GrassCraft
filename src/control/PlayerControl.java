@@ -93,7 +93,7 @@ public class PlayerControl implements KeyListener, MouseListener{
 			 */
 		case KeyEvent.VK_ENTER:
 			//回车表示所有指令执行完毕，控制权交给下一人
-			this.gameControl.getNextPlayer();
+			this.gameControl.KeyEnter();;
 			break;
 			
 			/*

@@ -3,7 +3,7 @@ package dto;
 public class GameInfo {
 	private int turns;
 	private Grassman[] grassmans;
-	public int[][] map;
+	public int[][] map; 
 	
 	public GameInfo(int turns, Grassman[] grassmans, int[][] map){
 		this.turns = turns;
