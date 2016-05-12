@@ -12,5 +12,6 @@ public class rulePanel extends JPanel {
      public void paintComponent(Graphics g){
 
         g.drawImage(RULE, 0, 0,1200,700,null);
+        this.requestFocus();
    }
 }

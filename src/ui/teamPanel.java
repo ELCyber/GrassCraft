@@ -11,5 +11,6 @@ public class teamPanel extends JPanel{
      @Override
      public void paintComponent(Graphics g){
         g.drawImage(TEAM, 0, 0,1200,700,null);
+        this.requestFocus();
    }
 }

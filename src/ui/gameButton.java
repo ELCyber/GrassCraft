@@ -22,7 +22,10 @@ public class gameButton extends MouseAdapter {
 	ImageIcon iconStartEntered = new ImageIcon("Graphics/Button/开始（大）.png");
 	ImageIcon iconRuleEntered = new ImageIcon("Graphics/Button/游戏规则（大）.png");
 	ImageIcon iconTeamEntered = new ImageIcon("Graphics/Button/制作团队（大）.png");
-	ImageIcon iconBack = new ImageIcon("Graphics/Button/退出.png");
+	ImageIcon iconBack = new ImageIcon("Graphics/Button/退出按钮 （小）.png");
+	ImageIcon iconBackEntered = new ImageIcon("Graphics/Button/退出按钮（大）.png");
+	ImageIcon iconReStart = new ImageIcon("Graphics/Button/重新开始（小）.png");
+	ImageIcon iconReStartEntered= new ImageIcon("Graphics/Button/重新开始 （大）.png");
 
 	public JButton startButton;
 	public JButton ruleButton;
@@ -94,25 +97,27 @@ public class gameButton extends MouseAdapter {
  * mapPanel上的按钮
  * @return
  */
-	//TODO 返回主界面 原图标分辨率低
+	//返回主界面
 	public JButton createStartBackButton() {
 		startBackButton = new JButton();
 		startBackButton.setBorder(null);
-		startBackButton.setBounds(1000, 400, 224, 336);
-//		startBackButton.setContentAreaFilled(false);
-//		startBackButton.setBorderPainted(false);
+		startBackButton.setBounds(950,550,250,150);
+		startBackButton.setContentAreaFilled(false);
+		startBackButton.setBorderPainted(false);
 		startBackButton.setIcon(iconBack);
+		startBackButton.setRolloverIcon(iconBackEntered);
 		startBackButton.addMouseListener(this);
 		return startBackButton;
 	}
-	//TODO 重新开始 加图标
+	//重新开始
 	public JButton createReStartButton() {
-		reStartButton = new JButton("重新开始");
+		reStartButton = new JButton();
 		reStartButton.setBorder(null);
-		reStartButton.setBounds(1000, 100, 300, 300);
+		reStartButton.setBounds(950,400,250,150);
 		reStartButton.setContentAreaFilled(false);
 		reStartButton.setBorderPainted(false);
-//		reStartButton.setIcon(iconBack);
+		reStartButton.setIcon(iconReStart);
+		reStartButton.setRolloverIcon(iconReStartEntered);
 		reStartButton.addMouseListener(this);
 		return reStartButton;
 	}
@@ -136,10 +141,11 @@ public class gameButton extends MouseAdapter {
 	public JButton createRuleBackButton() {
 		ruleBackButton = new JButton();
 		ruleBackButton.setBorder(null);
-		ruleBackButton.setBounds(1000, 50, 224, 336);
+		ruleBackButton.setBounds(0, 550, 250, 150);
 		ruleBackButton.setContentAreaFilled(false);
 		ruleBackButton.setBorderPainted(false);
 		ruleBackButton.setIcon(iconBack);
+		ruleBackButton.setRolloverIcon(iconBackEntered);
 		ruleBackButton.addMouseListener(this);
 		return ruleBackButton;
 	}
@@ -150,10 +156,11 @@ public class gameButton extends MouseAdapter {
 	public JButton createTeamBackButton() {
 		teamBackButton = new JButton();
 		teamBackButton.setBorder(null);
-		teamBackButton.setBounds(1000, 450, 224, 336);
+		teamBackButton.setBounds(950, 550, 250, 150);
 		teamBackButton.setContentAreaFilled(false);
 		teamBackButton.setBorderPainted(false);
 		teamBackButton.setIcon(iconBack);
+		teamBackButton.setRolloverIcon(iconBackEntered);
 		teamBackButton.addMouseListener(this);
 		return teamBackButton;
 	}
