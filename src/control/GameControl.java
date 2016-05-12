@@ -370,7 +370,7 @@ public class GameControl {
 
 	// 被杀则设置iskilled
 	public void isKilled() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 6; i++) {
 			if (mans[i].getBlood() == 0) {
 				mans[i].isKilled = true;
 				mans[i].setManImageNull();
