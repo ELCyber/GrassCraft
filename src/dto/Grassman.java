@@ -10,24 +10,16 @@ public class Grassman {
 	// public int[][] yPosition = new int[10][10];
 	private int x;
 	private int y;
+	private Image grassMan;
 	// private int newX;
 	// private int newY;
 	private int blood;
 	private int cure;
-	private int[][] ox = {			
-		    {0, 0, 0, 0, 0, 0, 0},
-		    {0, 0, 1, 1, 2, 0, 0},
-		    {-1,-1,-1,0, 1, 1, 1}
-		};
+	public boolean isKilled = false;
+	private int[][] ox = { { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 1, 1, 2, 0, 0 }, { -1, -1, -1, 0, 1, 1, 1 } };
 
+	private int[][] oy = { { 1, 2, 3, 4, 0, 0, 0 }, { 1, 2, 0, 1, 0, 0, 0 }, { -1, 0, 1, -1, 1, -1, 0 } };
 
-	private	int[][] oy = {
-		    {1, 2, 3, 4, 0, 0, 0},
-		    {1, 2, 0, 1, 0, 0, 0},
-		    {-1,0,1, -1, 1,-1, 0}
-		};
-
-	
 	public Grassman(int i) {
 		this.blood = 3;
 		this.cure = 6;
@@ -65,6 +57,7 @@ public class Grassman {
 		default:
 			break;
 		}
+		grassMan = new ImageIcon(manName).getImage();
 	}
 
 	public String getManName() {
@@ -72,8 +65,11 @@ public class Grassman {
 	}
 
 	public Image getManImage() {
-		Image grassMan = new ImageIcon(manName).getImage();
+		//grassMan = new ImageIcon(manName).getImage();
 		return grassMan;
+	}
+	public void setManImageNull(){
+		grassMan = null;
 	}
 
 	public int getXPosition() {
@@ -121,6 +117,5 @@ public class Grassman {
 	public int[][] getOy() {
 		return oy;
 	}
-
 
 }
