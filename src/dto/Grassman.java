@@ -5,7 +5,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Grassman {
+	private String name;
 	private String manName;
+	private String chosenName;
 	// public int[][] xPosition = new int[10][10];
 	// public int[][] yPosition = new int[10][10];
 	private int x;
@@ -26,50 +28,62 @@ public class Grassman {
 		switch (i) {
 		case 0:
 			this.manName = "Graphics/Characters/grassMan0.0.png";
+			this.chosenName = "Graphics/Characters/grassMan0.0turn.png";
 			x = 0;
 			y = 0;
 			break;
 		case 1:
 			this.manName = "Graphics/Characters/grassMan0.1.png";
+			this.chosenName = "Graphics/Characters/grassMan0.1turn.png";
 			x = 0;
 			y = 4;
 			break;
 		case 2:
 			this.manName = "Graphics/Characters/grassMan0.2.png";
+			this.chosenName = "Graphics/Characters/grassMan0.2turn.png";
 			x = 4;
 			y = 0;
 			break;
 		case 3:
 			this.manName = "Graphics/Characters/grassMan1.0.png";
+			this.chosenName = "Graphics/Characters/grassMan1.0turn.png";
 			x = 9;
 			y = 9;
 			break;
 		case 4:
 			this.manName = "Graphics/Characters/grassMan1.1.png";
+			this.chosenName = "Graphics/Characters/grassMan1.1turn.png";
 			x = 9;
 			y = 5;
 			break;
 		case 5:
 			this.manName = "Graphics/Characters/grassMan1.2.png";
+			this.chosenName = "Graphics/Characters/grassMan1.2turn.png";
 			x = 5;
 			y = 9;
 			break;
 		default:
 			break;
 		}
-		grassMan = new ImageIcon(manName).getImage();
+		this.name = this.manName;
+	//	grassMan = new ImageIcon(name).getImage();
 	}
 
 	public String getManName() {
-		return this.manName;
+		return this.name;
 	}
-
+    public void whenIsChosen(){
+    	this.name = chosenName;
+    }
+    public void notChosen(){
+    	this.name = manName;
+    }
 	public Image getManImage() {
-		//grassMan = new ImageIcon(manName).getImage();
+		grassMan = new ImageIcon(name).getImage();
 		return grassMan;
 	}
 	public void setManImageNull(){
-		grassMan = null;
+		name = null;
 	}
 
 	public int getXPosition() {

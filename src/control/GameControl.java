@@ -30,6 +30,8 @@ public class GameControl {
 		this.mans = mans;
 		this.info = info;
 		this.man = mans[0];
+		this.man.whenIsChosen();
+		this.mapP.repaint();
 	}
 
 	// 地图数组：0 表示 无人 1-6 表示 player0-5 7 表示 攻击范围
@@ -399,6 +401,7 @@ public class GameControl {
 	public void getNextPlayer() {
 		// 控制权交给下一个人，上一个人需要恢复体力
 		this.man.setCure(6);
+		this.man.notChosen();
 		// 判断下一个人有没有被杀，被杀则回合加一继续判断
 		while (true) {
 			if (mans[this.isWhoseTurn()].isKilled) {
@@ -408,19 +411,22 @@ public class GameControl {
 			}
 		}
 		this.man = mans[this.isWhoseTurn()];
+		this.man.whenIsChosen();
+		this.mapP.repaint();
 	}
 
 	// 判断回合的两个方法；
 	public boolean isGameover() {
-		if ((info.getTurns() == 96) || oneSideDead())
+		if ((info.getTurns() == 96) || oneSideDead()) {
+			mapP.addKeyListener(null);
+			mapP.setVisible();
 			return true;
-		else
+		} else
 			return false;
 	}
 
 	// 判断是否一方死掉；
 	public boolean oneSideDead() {
-		boolean dead = false;
 		for (int i = 0; i < 3; i++) {
 			if (!mans[i].isKilled) {
 				break;

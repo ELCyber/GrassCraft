@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import control.GameControl;
@@ -25,9 +26,17 @@ public class mapPanel extends JPanel {
 	public Grassman[] mans = new Grassman[6];
 	public GameInfo info;
 	public int[][] map;
+	public JLabel endPicture;
+	ImageIcon end = new ImageIcon("/Users/chengyunfei/Desktop/el原始素材/logo/20160218155517_CWcQZ.thumb.700_0.jpeg");
+
 	public mapPanel() {
 		 //man0 = new Grassman(0);
 		//test
+		//设置label的大小和不可见；
+	//	ImageIcon end = new ImageIcon("/Users/chengyunfei/Desktop/el原始素材/logo/20160218155517_CWcQZ.thumb.700_0.jpeg");
+		endPicture = new JLabel(end);
+		endPicture.setBounds(300, 175, 600, 350);
+		endPicture.setVisible(true);
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
 		}
@@ -45,8 +54,12 @@ public class mapPanel extends JPanel {
 		GameControl gameControl=new GameControl(this,mans,info);
 		PlayerControl playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
+		this.add(endPicture);
 	}
-
+	//设置可见的方法；
+    public void setVisible(){
+    	endPicture.setVisible(true);
+    }
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//绘制背景
