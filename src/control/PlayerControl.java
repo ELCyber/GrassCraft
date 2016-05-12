@@ -2,12 +2,10 @@ package control;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 /**
  *实现基本的上下左右、攻击（注意有四个方向，所以是四个按键WASD）、确认 等 键盘 操作 and 重新开始游戏、返回主界面、退出游戏等 鼠标 操作
  */
-public class PlayerControl implements KeyListener, MouseListener{
+public class PlayerControl implements KeyListener{
 
 	private GameControl gameControl;
 
@@ -16,45 +14,7 @@ public class PlayerControl implements KeyListener, MouseListener{
 	}
 
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-	
-	
-	@Override
-	public void keyTyped(KeyEvent e) {}
-	@Override
-	public void keyReleased(KeyEvent e) {}
-	
 	
 	/*
 	 * 键盘监听
@@ -126,6 +86,24 @@ public class PlayerControl implements KeyListener, MouseListener{
 		default:
 			break;
 		}
+	}
+
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

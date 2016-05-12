@@ -7,15 +7,15 @@ import javax.swing.ImageIcon;
 public class Block  {
 	String name;
 	
-	//Image block = new ImageIcon(name).getImage();
-	//
-	//
 	public Block(){
 		this.name="Graphics/colorBlock/green.png";
 	}
 	
 	public void changeColor(int number) {
 		switch (number) {
+		case 0:
+			this.name = "Graphics/colorBlock/green.png";
+			break;
 		case 1:
 			this.name = "Graphics/colorBlock/yellow2.png";
 			break;

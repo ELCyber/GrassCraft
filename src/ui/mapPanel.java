@@ -17,7 +17,7 @@ public class mapPanel extends JPanel {
 	static ImageIcon back = new ImageIcon("Graphics/gameBG.jpeg");
 
 	static Image im = back.getImage();
-	static Block[][] blocks = new Block[10][10];
+	private Block[][] blocks = new Block[10][10];
 	public int[][] xPosition = new int[10][10];
 	public int[][] yPosition = new int[10][10];
 	public int x;
@@ -52,23 +52,11 @@ public class mapPanel extends JPanel {
 		//绘制背景
 		g.drawImage(im, 0, 0, getWidth(), getHeight(), this);
 		this.requestFocus();
-		
-		blocks[3][6].changeColor(1);
-		blocks[4][7].changeColor(2);
-		blocks[7][6].changeColor(1);
-		blocks[2][9].changeColor(2);
-		blocks[5][0].changeColor(1);
-		blocks[9][3].changeColor(2);
-		blocks[3][0].changeColor(3);
-		blocks[7][7].changeColor(3);
-		blocks[1][6].changeColor(1);
-		blocks[6][7].changeColor(3);
 
 		for (int x = 0; x < 10; x++) {
 			int m = 0;
 			int n = 0;
 			for (int y = 0; y < 10; y++) {
-				// Image name = new ImageIcon(blocks[x][y].name).getImage();
 
 				//绘制地块
 				g.drawImage((blocks[x][y]).getImage(), 100 + 50 * x + 50 * m,
@@ -87,5 +75,9 @@ public class mapPanel extends JPanel {
 				yPosition[mans[i].getXPosition()][mans[i].getYPosition()], 80, 80,
 				this);
 		}
+	}
+
+	public  Block[][] getBlocks() {
+		return this.blocks;
 	}
 }
