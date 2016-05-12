@@ -26,17 +26,16 @@ public class mapPanel extends JPanel {
 	public Grassman[] mans = new Grassman[6];
 	public GameInfo info;
 	public int[][] map;
-	public JLabel endPicture;
-	ImageIcon end = new ImageIcon("/Users/chengyunfei/Desktop/el原始素材/logo/20160218155517_CWcQZ.thumb.700_0.jpeg");
+	
+	
+	//TODO 换图片
+	public JLabel blueWinPicture;
+	public JLabel redWinPicture;
+	private ImageIcon blueWin = new ImageIcon("Graphics/gameBG.jpeg");
+	private ImageIcon redWin = new ImageIcon("Graphics/gameBG.jpeg");
 
 	public mapPanel() {
-		 //man0 = new Grassman(0);
-		//test
-		//设置label的大小和不可见；
-	//	ImageIcon end = new ImageIcon("/Users/chengyunfei/Desktop/el原始素材/logo/20160218155517_CWcQZ.thumb.700_0.jpeg");
-		endPicture = new JLabel(end);
-		endPicture.setBounds(300, 175, 600, 350);
-		endPicture.setVisible(true);
+        
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
 		}
@@ -54,12 +53,22 @@ public class mapPanel extends JPanel {
 		GameControl gameControl=new GameControl(this,mans,info);
 		PlayerControl playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
-		this.add(endPicture);
 	}
-	//设置可见的方法；
-    public void setVisible(){
-    	endPicture.setVisible(true);
-    }
+	
+	//蓝方胜
+	public void showBlueWinPicture(){
+		blueWinPicture = new JLabel(blueWin);
+		blueWinPicture.setBounds(300, 175, 600, 350);
+		blueWinPicture.setVisible(true);
+		mapPanel.this.add(blueWinPicture);
+	}
+	//红方胜
+    public void showRedWinPicture(){
+    	redWinPicture = new JLabel(redWin);
+		redWinPicture.setBounds(300, 175, 600, 350);
+		redWinPicture.setVisible(true);
+		mapPanel.this.add(redWinPicture);
+	}
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//绘制背景
@@ -83,10 +92,12 @@ public class mapPanel extends JPanel {
 		}
 
 		for(int i =0;i<6;i++){
+			if(mans[i]!=null){
 		g.drawImage(mans[i].getManImage(),
 				xPosition[mans[i].getXPosition()][mans[i].getYPosition()],
 				yPosition[mans[i].getXPosition()][mans[i].getYPosition()], 80, 80,
 				this);
+		   }
 		}
 	}
 

@@ -197,7 +197,7 @@ public class FrameGame extends JFrame {
 		teamPanel.add(gB.createTeamBackButton());
 	}
 
-	private void initMapPanel() {
+	public void initMapPanel() {
 		mapPanel = new mapPanel();
 		mapPanel.setLayout(null);
 		mapPanel.add(gB.createStartBackButton());

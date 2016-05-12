@@ -8,13 +8,9 @@ public class Grassman {
 	private String name;
 	private String manName;
 	private String chosenName;
-	// public int[][] xPosition = new int[10][10];
-	// public int[][] yPosition = new int[10][10];
 	private int x;
 	private int y;
 	private Image grassMan;
-	// private int newX;
-	// private int newY;
 	private int blood;
 	private int cure;
 	public boolean isKilled = false;
@@ -89,11 +85,15 @@ public class Grassman {
 	public int getXPosition() {
 		return this.x;
 	}
-
+    public void setXPosition(int newX){
+    	this.x=newX;
+    }
 	public int getYPosition() {
 		return this.y;
 	}
-
+	public void setYPosition(int newY){
+    	this.y=newY;
+    }
 	public int getBlood() {
 		return this.blood;
 	}

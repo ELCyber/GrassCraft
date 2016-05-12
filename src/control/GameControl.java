@@ -371,9 +371,14 @@ public class GameControl {
 	// 被杀则设置iskilled
 	public void isKilled() {
 		for (int i = 0; i < 6; i++) {
+			if(mans[i]==null){
+				continue;
+			}
 			if (mans[i].getBlood() == 0) {
-				mans[i].isKilled = true;
-				mans[i].setManImageNull();
+				//把被杀死的map[][]设为0
+				info.map[mans[i].getXPosition()][mans[i].getYPosition()]=0; 
+				//位置也要改一改，防止死了之后占着茅坑不拉粑粑,因为isCrashed会判断他的XY
+				mans[i]=null;
 			}
 		}
 	}
@@ -387,12 +392,16 @@ public class GameControl {
 		isDown = false;
 		isLeft = false;
 		isRight = false;
-		// 判断回合是否結束
-		if (this.isGameover()) {
-			System.out.println("game over");
-		}
+		
 		// 回合数加一
-		info.setTurns();
+	    info.setTurns();
+		// 判断回合是否結束
+//		if (isGameover()) {
+//			System.out.println("game over");
+//			this.mapP.removeKeyListener(null);
+//			//mapP.setVisible();
+//		}
+//		
 		// 控制权交给下一个
 		this.getNextPlayer();
 
@@ -404,7 +413,7 @@ public class GameControl {
 		this.man.notChosen();
 		// 判断下一个人有没有被杀，被杀则回合加一继续判断
 		while (true) {
-			if (mans[this.isWhoseTurn()].isKilled) {
+			if (mans[this.isWhoseTurn()]==null) {
 				info.setTurns();
 			} else {
 				break;
@@ -417,26 +426,43 @@ public class GameControl {
 
 	// 判断回合的两个方法；
 	public boolean isGameover() {
-		if ((info.getTurns() == 96) || oneSideDead()) {
-			mapP.addKeyListener(null);
-			mapP.setVisible();
+		System.out.println(info.getTurns());
+		if ((info.getTurns() >96) || oneSideDead()) {
 			return true;
-		} else
+		} else{
 			return false;
+		}
 	}
 
 	// 判断是否一方死掉；
 	public boolean oneSideDead() {
-		for (int i = 0; i < 3; i++) {
-			if (!mans[i].isKilled) {
-				break;
+		int i=0;
+		int blueDeadNum=0;
+		int redDeadNum=0;
+		for (i = 0; i < 3; i++) {
+			if (mans[i]==null) {
+				blueDeadNum++;
 			}
+		}
+		for ( i = 3; i < 6; i++) {
+			if (mans[i]==null) {
+				redDeadNum++;
+			}
+		}
+		if(blueDeadNum==3){
+			//红方胜，调用红方胜利的方法
+			//TODO method
+			reSetBlockColor();
+			System.out.println("red win");
+			this.mapP.showRedWinPicture();
 			return true;
 		}
-		for (int i = 3; i < 6; i++) {
-			if (!mans[i].isKilled) {
-				break;
-			}
+		if(redDeadNum==3){
+			//蓝方胜，调用蓝方胜利的方法
+			//TODO method
+			reSetBlockColor();
+			System.out.println("blue win");
+			this.mapP.showBlueWinPicture();
 			return true;
 		}
 		return false;
@@ -496,6 +522,9 @@ public class GameControl {
 
 	public boolean isCrashed(int newX, int newY, Grassman[] mans) {
 		for (int i = 0; i < 6; i++) {
+			if(mans[i]==null){
+				continue;
+			}
 			if (this.man != mans[i]) {
 				if (newX == mans[i].getXPosition() && newY == mans[i].getYPosition()) {
 					return true;
@@ -541,6 +570,10 @@ public class GameControl {
 			}
 		}
 		return -1;
+	}
+
+	public mapPanel getMapP() {
+		return mapP;
 	}
 
 	public int numOfMan() {

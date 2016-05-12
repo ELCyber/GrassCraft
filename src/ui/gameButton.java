@@ -36,8 +36,7 @@ public class gameButton extends MouseAdapter {
 	public JButton exitGameButton;
 	public JButton reStartButton;
 	public JButton exitMapGameButton;
-	//重新開始
-    public mapPanel newMapPanel;
+	
 	public Container con;
 	FrameGame frame;
 
@@ -176,8 +175,17 @@ public class gameButton extends MouseAdapter {
 			Player.stopMusic();
 			Player.playMusic("home");
 		}
-		if (e.getSource() == startBackButton || e.getSource() == ruleBackButton || e.getSource() == teamBackButton) {
+		if ( e.getSource() == ruleBackButton || e.getSource() == teamBackButton) {
 			con.removeAll();
+			con.add(frame.mainPanel);
+			con.revalidate();
+			con.repaint();
+			Player.stopMusic();
+			Player.playMusic("十二月的奇迹");
+		}
+		if(e.getSource() == startBackButton ){
+			con.removeAll();
+			frame.initMapPanel();
 			con.add(frame.mainPanel);
 			con.revalidate();
 			con.repaint();
@@ -202,12 +210,8 @@ public class gameButton extends MouseAdapter {
 		//mapPanel的重新开始按钮
 		if(e.getSource() == reStartButton){
 			con.removeAll();
-			newMapPanel=new mapPanel();
-			newMapPanel.setLayout(null);
-			newMapPanel.add(createStartBackButton());
-			newMapPanel.add(createReStartButton());
-			newMapPanel.add(createMapExitButton());
-			con.add(newMapPanel);
+			frame.initMapPanel();
+			con.add(frame.mapPanel);
 			con.revalidate();
 			con.repaint();
 		}
