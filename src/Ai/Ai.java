@@ -9,7 +9,6 @@ public class Ai {
 	private int[] Action = {0,0,0,0};
 
 	public Ai(GameControl gameControl){
-		if(gameControl.isWhoseTurn() > 2)
 		this.gameControl = gameControl;
 	}
 	
