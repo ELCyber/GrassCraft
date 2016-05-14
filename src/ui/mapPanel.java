@@ -2,6 +2,7 @@
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -34,6 +35,11 @@ public class mapPanel extends JPanel {
 	public JLabel redWinPicture;
 	private ImageIcon blueWin = new ImageIcon("Graphics/gameBG.jpeg");
 	private ImageIcon redWin = new ImageIcon("Graphics/gameBG.jpeg");
+	private String onesun="Graphics/allsun/血量1.png";
+    private String twosun="Graphics/allsun/血量2.png";
+    private String threesun="Graphics/allsun/血量3.png";
+	String[] allsun={onesun,twosun,threesun};
+	
 
 	private GameButton gameButton;
 	/**
@@ -133,6 +139,18 @@ public class mapPanel extends JPanel {
 				this);
 		   }
 		}
+		for(int i=0;i<6;i++){
+			if(mans[i]!=null){
+				int b=mans[i].getBlood();
+				ImageIcon image=new ImageIcon(allsun[b-1]);
+						g.drawImage(image.getImage(),
+						xPosition[mans[i].getXPosition()][mans[i].getYPosition()]-5,
+						yPosition[mans[i].getXPosition()][mans[i].getYPosition()]-30, 70,35,
+						this);
+				
+			}
+		}
+		
 	}
 
 	public  Block[][] getBlocks() {
