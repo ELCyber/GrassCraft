@@ -25,6 +25,8 @@ public class FrameGame extends JFrame {
 	public JPanel rulePanel;
 	public JPanel teamPanel;
 	public JPanel mapPanel;
+	public JPanel map2Panel;
+//	public JPanel aiPanel;
 	/**
 	 * 开场动画
 	 */
@@ -37,7 +39,7 @@ public class FrameGame extends JFrame {
 	private boolean moving;
 	private int nowX;
 	private int nowY;
-	private gameButton gB;
+	private GameButton gB;
 	private Cursor cursor;
 
 	public FrameGame() {
@@ -59,7 +61,7 @@ public class FrameGame extends JFrame {
 		this.setCursor(cursor);
 
 		// 获得Button引用,并传入当前frame引用
-		gB = new gameButton(this);
+		gB = new GameButton(this);
 		// 获得frame的面板
 		con = this.getContentPane();
 
@@ -198,12 +200,29 @@ public class FrameGame extends JFrame {
 	}
 
 	public void initMapPanel() {
-		mapPanel = new mapPanel();
+		mapPanel = new mapPanel(gB);
 		mapPanel.setLayout(null);
 		mapPanel.add(gB.createStartBackButton());
 		mapPanel.add(gB.createReStartButton());
 		mapPanel.add(gB.createMapExitButton());
 	}
+	/*
+	 * 人机
+	 */
+	public void initMap2Panel() {
+		map2Panel = new mapPanel(gB,0);
+		map2Panel.setLayout(null);
+		map2Panel.add(gB.createStartBackButton());
+		map2Panel.add(gB.createReStartButton());
+		map2Panel.add(gB.createMapExitButton());
+	}
+//	public void initAiPanel() {
+//		aiPanel = new AiPanel(gB);
+//		aiPanel.setLayout(null);
+//		aiPanel.add(gB.createStartBackButton());
+//		aiPanel.add(gB.createReStartButton());
+//		aiPanel.add(gB.createMapExitButton());
+//	}
 
 
 }

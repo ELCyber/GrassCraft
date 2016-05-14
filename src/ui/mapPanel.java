@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Ai.Ai;
 import control.GameControl;
 import control.PlayerControl;
 import dto.GameInfo;
@@ -26,16 +27,20 @@ public class mapPanel extends JPanel {
 	public Grassman[] mans = new Grassman[6];
 	public GameInfo info;
 	public int[][] map;
-	
-	
+	private Ai aiControl;
+	private PlayerControl playControl;
 	//TODO 换图片
 	public JLabel blueWinPicture;
 	public JLabel redWinPicture;
 	private ImageIcon blueWin = new ImageIcon("Graphics/gameBG.jpeg");
 	private ImageIcon redWin = new ImageIcon("Graphics/gameBG.jpeg");
 
-	public mapPanel() {
-        
+	private GameButton gameButton;
+	/**
+	 * 双人
+	 */
+	public mapPanel(GameButton gameButton) {
+        this.gameButton=gameButton;
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
 		}
@@ -51,10 +56,35 @@ public class mapPanel extends JPanel {
 	    map=new int[10][10];
 		info=new GameInfo(1,mans,map);
 		GameControl gameControl=new GameControl(this,mans,info);
-		PlayerControl playControl=new PlayerControl(gameControl);
+		playControl=new PlayerControl(gameControl);
 		this.addKeyListener(playControl);
 	}
-	
+	/**
+	 * 人机
+	 * @param gameButton
+	 */
+	public mapPanel(GameButton gameButton,int diffculty) {
+        this.gameButton=gameButton;
+		for(int i =0;i<6;i++){
+			mans[i]=new Grassman(i);
+		}
+		//初始化地块
+				for (int x = 0; x < 10; x++) {
+					for (int y = 0; y < 10; y++) {
+						blocks[x][y] = new Block();
+					}
+				}
+		//初始化地图，因为攻击的范围使得
+		//info.map[xPosition + man.getOx()[this.judgeWeapon()][i]][yPosition + man.getOy()[this.judgeWeapon()][i]]		
+		//会出现IndexOutOfBoundsException 在gamecontrol需增加判断
+	    map=new int[10][10];
+		info=new GameInfo(1,mans,map);
+		GameControl gameControl=new GameControl(this,mans,info);
+		playControl=new PlayerControl(gameControl);
+		aiControl=new Ai(gameControl);
+		this.addKeyListener(playControl);
+	}
+
 	//蓝方胜
 	public void showBlueWinPicture(){
 		blueWinPicture = new JLabel(blueWin);
@@ -67,8 +97,12 @@ public class mapPanel extends JPanel {
     	redWinPicture = new JLabel(redWin);
 		redWinPicture.setBounds(300, 175, 600, 350);
 		redWinPicture.setVisible(true);
+		redWinPicture.setLayout(null);
+		redWinPicture.add(gameButton.playAgainButton(300, 175, 600, 350));
 		mapPanel.this.add(redWinPicture);
 	}
+    
+    
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//绘制背景
@@ -104,4 +138,10 @@ public class mapPanel extends JPanel {
 	public  Block[][] getBlocks() {
 		return this.blocks;
 	}
+	public Ai getAiControl(){
+		return this.aiControl;
+	}
+    public PlayerControl getPlayerControl(){
+    	return this.playControl;
+    }
 }

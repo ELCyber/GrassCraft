@@ -7,6 +7,7 @@ import ui.mapPanel;
 public class GameControl {
 
 	private mapPanel mapP;
+//	private AiPanel aiP;
 	private Grassman[] mans;
 	private GameInfo info;
 	private Grassman man;
@@ -24,6 +25,7 @@ public class GameControl {
 	private boolean isLeft = false;
 	private boolean isRight = false;
 
+	private BufferThread bt;
 	public GameControl(mapPanel mapP, Grassman[] mans, GameInfo info) {
 		// 初始化，传入第一个grassman及所有grassman数组；
 		this.mapP = mapP;
@@ -32,8 +34,22 @@ public class GameControl {
 		this.man = mans[0];
 		this.man.whenIsChosen();
 		this.mapP.repaint();
+		
+		
 	}
-
+	
+	/**
+	 * 人机
+	 */
+//	public GameControl(AiPanel aiP, Grassman[] mans, GameInfo info) {
+//		// 初始化，传入第一个grassman及所有grassman数组；
+//		this.aiP = aiP;
+//		this.mans = mans;
+//		this.info = info;
+//		this.man = mans[0];
+//		this.man.whenIsChosen();
+//		this.aiP.repaint();
+//	}
 	// 地图数组：0 表示 无人 1-6 表示 player0-5 7 表示 攻击范围
 	// Actions control
 	// 移动：原理（交换地图数组数值）
@@ -161,7 +177,7 @@ public class GameControl {
 							mans[info.map[this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i]][this.man
 									.getYPosition() + man.getOy()[this.judgeWeapon()][i]] - 1].getBlood());
 				} else {
-					System.out.println("攻击无效");
+//					System.out.println("攻击无效");
 				}
 			}
 		}
@@ -204,7 +220,7 @@ public class GameControl {
 							mans[info.map[this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i]][this.man
 									.getYPosition() - man.getOy()[this.judgeWeapon()][i]] - 1].getBlood());
 				} else {
-					System.out.println("攻击无效");
+//					System.out.println("攻击无效");
 				}
 			}
 		}
@@ -247,7 +263,7 @@ public class GameControl {
 							mans[info.map[this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i]][this.man
 									.getYPosition() + man.getOx()[this.judgeWeapon()][i]] - 1].getBlood());
 				} else {
-					System.out.println("攻击无效");
+//					System.out.println("攻击无效");
 				}
 			}
 		}
@@ -290,7 +306,7 @@ public class GameControl {
 							mans[info.map[this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i]][this.man
 									.getYPosition() - man.getOx()[this.judgeWeapon()][i]] - 1].getBlood());
 				} else {
-					System.out.println("攻击无效");
+//					System.out.println("攻击无效");
 				}
 			}
 		}
@@ -395,13 +411,6 @@ public class GameControl {
 		
 		// 回合数加一
 	    info.setTurns();
-		// 判断回合是否結束
-//		if (isGameover()) {
-//			System.out.println("game over");
-//			this.mapP.removeKeyListener(null);
-//			//mapP.setVisible();
-//		}
-//		
 		// 控制权交给下一个
 		this.getNextPlayer();
 
@@ -422,6 +431,21 @@ public class GameControl {
 		this.man = mans[this.isWhoseTurn()];
 		this.man.whenIsChosen();
 		this.mapP.repaint();
+		
+		//判断是否是人机模式
+		if(isAiGame()){
+			//判断是否是人机的回合
+			if(isAiControl()){
+				//创建新线程  
+				bt=new BufferThread();
+				//移除键盘监听
+				mapP.removeKeyListener(mapP.getPlayerControl());
+				//将控制权交给Ai
+				this.AiController();
+			
+			}
+		}
+	
 	}
 
 	// 判断回合的两个方法；
@@ -467,44 +491,34 @@ public class GameControl {
 		}
 		return false;
 	}
-
+/*
+ * 谁的回合
+ */
 	public int isWhoseTurn() {
 		switch (info.getTurns() % 12) {
 		case 1:
-			System.out.println("A1's turn.");
 			return 0;
 		case 8:
-			System.out.println("A1's turn.");
 			return 0;
 		case 2:
-			System.out.println("A2's turn.");
 			return 3;
 		case 7:
-			System.out.println("A2's turn.");
 			return 3;
 		case 4:
-			System.out.println("B1's turn.");
 			return 1;
 		case 9:
-			System.out.println("B1's turn.");
 			return 1;
 		case 3:
-			System.out.println("B2's turn.");
 			return 4;
 		case 10:
-			System.out.println("B2's turn.");
 			return 4;
 		case 0:
-			System.out.println("C1's turn.");
 			return 2;
 		case 5:
-			System.out.println("C1's turn.");
 			return 2;
 		case 6:
-			System.out.println("C2's turn.");
 			return 5;
 		case 11:
-			System.out.println("C2's turn.");
 			return 5;
 		default:
 			System.out.println("Error!");
@@ -585,4 +599,66 @@ public class GameControl {
 
 		return -1;
 	}
+	/*
+	 * 判断是否是人机
+	 */
+	public boolean isAiGame(){
+		if(this.mapP.getAiControl()==null){
+			return false;
+		}
+		return true;
+	}
+	/*
+	 * 判断该回合是否由玩家控制
+	 */
+	public boolean isPlayerControl(){
+		if(this.isWhoseTurn()==0||this.isWhoseTurn()==1||this.isWhoseTurn()==2){
+			return true;
+		}
+		return false;
+	}
+	/*
+	 * 判断该回合是否由人机控制
+	 */
+	public boolean isAiControl(){
+		if(this.isWhoseTurn()==3||this.isWhoseTurn()==4||this.isWhoseTurn()==5){
+			
+			return true;
+		}
+		return false;
+	}
+	/*
+	 * Ai控制器
+	 */
+	public void AiController(){
+		//要攻击还是移动
+		this.mapP.getAiControl().judgeAction();
+		//Ai回合结束，恢复键盘，自动调用KeyEnter方法
+//		if(isStart){
+//		bt.run();
+//		}else{
+//			bt.start();
+//			isStart=true;
+//		}
+		bt.start();
+	}
+	/*
+	 * 两个ai之间需要一定的停留时间，运用线程
+	 */
+	class BufferThread extends Thread{ 
+		public void run() {
+			try {
+				sleep(1000);
+				KeyEnter();
+				//判断是否是玩家控制
+				if(isPlayerControl()){
+					mapP.addKeyListener(mapP.getPlayerControl());
+				}
+				}catch (InterruptedException e) {
+				 e.printStackTrace();
+			}
+			
+			}
+	}
+	
 }
