@@ -522,7 +522,7 @@ public class GameControl {
 	// 判断回合的两个方法；
 	public boolean isGameover() {
 		System.out.println(info.getTurns());
-		if ((info.getTurns() >96) || oneSideDead()) {
+		if (oneSideDead()) {
 			return true;
 		} else{
 			return false;
@@ -534,6 +534,61 @@ public class GameControl {
 		int i=0;
 		int blueDeadNum=0;
 		int redDeadNum=0;
+		int sumOfBlueBlood=0;
+		int sumOfRedBlood=0;
+		//如果96回合结束后仍然无一方全死光，则总血量多的一方胜利
+		if(info.getTurns()==48){
+			for (i = 0; i < 3; i++) {
+				if (mans[i]!=null) {
+					sumOfBlueBlood=sumOfBlueBlood+mans[i].getBlood();
+				}
+			}
+			for ( i = 3; i < 6; i++) {
+				if (mans[i]!=null) {
+					sumOfRedBlood=sumOfRedBlood+mans[i].getBlood();
+				}
+		    }
+			//蓝方胜
+            if(sumOfBlueBlood>sumOfRedBlood){
+    			reSetBlockColor();
+    			if(isAiGame()){
+    				//人机模式
+    			   this.mapP.showBlueWinPicture();
+    			}else{
+    				//双人模式
+    			   this.mapP.showDoubleBlueWinPicture();
+    			}
+    			//不知道为什么这里要repaint才能出来 ，通过死亡人数的却不用
+				this.mapP.repaint();
+    			return true;
+			}
+            //红方胜
+            if(sumOfBlueBlood<sumOfRedBlood){
+    			reSetBlockColor();
+    			if(isAiGame()){
+    				//人机模式
+    			   this.mapP.showRedWinPicture();
+    			}else{
+    				//双人模式
+    			   this.mapP.showDoubleRedWinPicture();
+    			}
+    			//不知道为什么这里要repaint才能出来，通过死亡人数的却不用
+				this.mapP.repaint();
+    			return true;
+			}
+            //平局
+            if(sumOfBlueBlood==sumOfRedBlood){
+            	System.out.println(sumOfBlueBlood+"blue");
+            	System.out.println(sumOfRedBlood+"red");
+            	reSetBlockColor();
+            	System.out.println("draw");
+				this.mapP.showDraw();
+				//不知道为什么这里要repaint才能出来，通过死亡人数的却不用
+				this.mapP.repaint();
+				return true;
+			}
+            
+          }
 		for (i = 0; i < 3; i++) {
 			if (mans[i]==null) {
 				blueDeadNum++;
@@ -549,8 +604,13 @@ public class GameControl {
 			//TODO method
 			reSetBlockColor();
 			System.out.println("red win");
-			
-			this.mapP.showRedWinPicture();
+			if(isAiGame()){
+				//人机模式
+			   this.mapP.showRedWinPicture();
+			}else{
+				//双人模式
+			   this.mapP.showDoubleRedWinPicture();
+			}
 			return true;
 		}
 		if(redDeadNum==3){
@@ -558,9 +618,17 @@ public class GameControl {
 			//TODO method
 			reSetBlockColor();
 			System.out.println("blue win");
-			this.mapP.showBlueWinPicture();
+			
+			if(isAiGame()){
+				//人机模式
+			   this.mapP.showBlueWinPicture();
+			}else{
+				//双人模式
+			   this.mapP.showDoubleBlueWinPicture();
+			}
 			return true;
 		}
+		
 		return false;
 	}
 /*
