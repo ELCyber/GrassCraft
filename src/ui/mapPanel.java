@@ -2,6 +2,7 @@
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -29,21 +30,11 @@ public class mapPanel extends JPanel {
 	public int[][] map;
 	private Ai aiControl;
 	private PlayerControl playControl;
-	
+	//TODO 换图片
 	public JLabel blueWinPicture;
 	public JLabel redWinPicture;
-	public JLabel blueDoubleWinPicture;
-	public JLabel redDoubleWinPicture;
-	public JLabel drawPicture;
-	//人机
-	private ImageIcon blueWin = new ImageIcon("Graphics/输赢/胜利.png");
-	private ImageIcon redWin = new ImageIcon("Graphics/输赢/输了.png");
-	//双人
-	private ImageIcon blueDoubleWin = new ImageIcon("Graphics/输赢/胜利.png");
-	private ImageIcon redDoubleWin = new ImageIcon("Graphics/输赢/输了.png");
-	//平局
-	private ImageIcon draw= new ImageIcon("Graphics/gameBG.jpeg");
-	
+	private ImageIcon blueWin = new ImageIcon("Graphics/gameBG.jpeg");
+	private ImageIcon redWin = new ImageIcon("Graphics/gameBG.jpeg");
 	private String onesun="Graphics/allsun/血量1.png";
     private String twosun="Graphics/allsun/血量2.png";
     private String threesun="Graphics/allsun/血量3.png";
@@ -99,16 +90,7 @@ public class mapPanel extends JPanel {
 		aiControl=new Ai(gameControl);
 		this.addKeyListener(playControl);
 	}
-	//平局
-	public void showDraw(){
-		drawPicture = new JLabel(draw);
-		drawPicture.setBounds(300, 175, 600, 350);
-		drawPicture.setVisible(true);
-		mapPanel.this.add(drawPicture);
-	}
-/**
- * 人机
- */
+
 	//蓝方胜
 	public void showBlueWinPicture(){
 		blueWinPicture = new JLabel(blueWin);
@@ -121,26 +103,12 @@ public class mapPanel extends JPanel {
     	redWinPicture = new JLabel(redWin);
 		redWinPicture.setBounds(300, 175, 600, 350);
 		redWinPicture.setVisible(true);
+		redWinPicture.setLayout(null);
+		redWinPicture.add(gameButton.playAgainButton(300, 175, 600, 350));
 		mapPanel.this.add(redWinPicture);
 	}
     
-   /**
-    * 双人对战
-    */
-    //蓝方胜
-	public void showDoubleBlueWinPicture(){
-		 blueDoubleWinPicture = new JLabel(blueDoubleWin);
-		 blueDoubleWinPicture.setBounds(300, 175, 600, 350);
-		 blueDoubleWinPicture.setVisible(true);
-		 mapPanel.this.add( blueDoubleWinPicture);
-	}
-	//红方胜
-    public void showDoubleRedWinPicture(){
-    	redDoubleWinPicture = new JLabel(redDoubleWin);
-		redDoubleWinPicture.setBounds(300, 175, 600, 350);
-		redDoubleWinPicture.setVisible(true);
-		mapPanel.this.add(redDoubleWinPicture);
-	}
+    
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//绘制背景
