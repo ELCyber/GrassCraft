@@ -14,9 +14,17 @@ public class Grassman {
 	private int blood;
 	private int cure;
 	public boolean isKilled = false;
-	private int[][] ox = { { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 1, 1, 2, 0, 0 }, { -1, -1, -1, 0, 1, 1, 1 } };
+	private int[][] ox = { 
+			{ 0, 0, 0, 0, 0, 0, 0 }, 
+			{ 0, 0, 1, 1, 2, 0, 0 }, 
+			{ -1, -1, -1, 0, 1, 1, 1 } 
+			};
 
-	private int[][] oy = { { 1, 2, 3, 4, 0, 0, 0 }, { 1, 2, 0, 1, 0, 0, 0 }, { -1, 0, 1, -1, 1, -1, 0 } };
+	private int[][] oy = { 
+			{ 1, 2, 3, 4, 0, 0, 0 },
+			{ 1, 2, 0, 1, 0, 0, 0 }, 
+			{ -1, 0, 1, 1, 1, -1, 0 }
+			};
 
 	public Grassman(int i) {
 		this.blood = 3;

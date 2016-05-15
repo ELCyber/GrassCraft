@@ -141,7 +141,10 @@ public class GameControl {
 	 * res[1] = y0; //向上 } if (direction == 3){ res[0] = -y0; res[1] = x0; //向左
 	 * }
 	 */
-	public void KeyOffendUp() {
+	/*
+	 * 显示攻击范围,即攻击提示  按下空格攻击
+	 */
+	public void offendUpScope(){
 		for (int i = 0; i < 7; i++) {
 			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
 				// 该判断为攻击范围是否越界
@@ -154,6 +157,74 @@ public class GameControl {
 				// 改变地图颜色
 				this.mapP.getBlocks()[this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i]][this.man
 						.getYPosition() + man.getOy()[this.judgeWeapon()][i]].changeColor(1);
+				this.mapP.repaint();
+			}
+		}
+	}
+	public void offendDownScope(){
+		for (int i = 0; i < 7; i++) {
+			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
+				if (this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i] < 0
+						|| this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i] > 9
+						|| this.man.getYPosition() - man.getOy()[this.judgeWeapon()][i] < 0
+						|| this.man.getYPosition() - man.getOy()[this.judgeWeapon()][i] > 9) {
+					continue;
+				}
+				// 改变地图颜色
+				this.mapP.getBlocks()[this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i]][this.man
+						.getYPosition() - man.getOy()[this.judgeWeapon()][i]].changeColor(1);
+				this.mapP.repaint();
+				}
+			}
+	}
+	public void offendLeftScope(){
+		for (int i = 0; i < 7; i++) {
+			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
+				if (this.man.getYPosition() + man.getOx()[this.judgeWeapon()][i] < 0
+						|| this.man.getYPosition() + man.getOx()[this.judgeWeapon()][i] > 9
+						|| this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i] < 0
+						|| this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i] > 9) {
+					continue;
+				}
+				// 改变地图颜色
+				this.mapP.getBlocks()[this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i]][this.man
+						.getYPosition() + man.getOx()[this.judgeWeapon()][i]].changeColor(1);
+				this.mapP.repaint();
+			}
+		}
+	}
+	public void offendRightScope(){
+		for (int i = 0; i < 7; i++) {
+			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
+				if (this.man.getYPosition() - man.getOx()[this.judgeWeapon()][i] < 0
+						|| this.man.getYPosition() - man.getOx()[this.judgeWeapon()][i] > 9
+						|| this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i] < 0
+						|| this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i] > 9) {
+					continue;
+				}
+				// 改变地图颜色
+				this.mapP.getBlocks()[this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i]][this.man
+						.getYPosition() - man.getOx()[this.judgeWeapon()][i]].changeColor(1);
+				this.mapP.repaint();
+			}
+		}
+	}
+	/*
+	 * 执行攻击
+	 */
+	public void KeyOffendUp() {
+		for (int i = 0; i < 7; i++) {
+			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
+				// 该判断为攻击范围是否越界
+				if (this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i] < 0
+						|| this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i] > 9
+						|| this.man.getYPosition() + man.getOy()[this.judgeWeapon()][i] < 0
+						|| this.man.getYPosition() + man.getOy()[this.judgeWeapon()][i] > 9) {
+					continue;
+				}
+				// 改变地图颜色
+				this.mapP.getBlocks()[this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i]][this.man
+						.getYPosition() + man.getOy()[this.judgeWeapon()][i]].changeColor(3);
 				this.mapP.repaint();
 				// 向上攻击了
 				isOffendUp = true;
@@ -196,7 +267,7 @@ public class GameControl {
 				}
 				// 改变地图颜色
 				this.mapP.getBlocks()[this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i]][this.man
-						.getYPosition() - man.getOy()[this.judgeWeapon()][i]].changeColor(1);
+						.getYPosition() - man.getOy()[this.judgeWeapon()][i]].changeColor(3);
 				this.mapP.repaint();
 				// 向下攻击了
 				isOffendDown = true;
@@ -239,7 +310,7 @@ public class GameControl {
 				}
 				// 改变地图颜色
 				this.mapP.getBlocks()[this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i]][this.man
-						.getYPosition() + man.getOx()[this.judgeWeapon()][i]].changeColor(1);
+						.getYPosition() + man.getOx()[this.judgeWeapon()][i]].changeColor(3);
 				this.mapP.repaint();
 				// 向左攻击了
 				isOffendLeft = true;
@@ -282,7 +353,7 @@ public class GameControl {
 				}
 				// 改变地图颜色
 				this.mapP.getBlocks()[this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i]][this.man
-						.getYPosition() - man.getOx()[this.judgeWeapon()][i]].changeColor(1);
+						.getYPosition() - man.getOx()[this.judgeWeapon()][i]].changeColor(3);
 				this.mapP.repaint();
 				// 向右攻击了
 				isOffendRight = true;
@@ -320,7 +391,7 @@ public class GameControl {
 			// if（攻击范围）
 			if (man.getOx()[this.judgeWeapon()][i] != 0 || man.getOy()[this.judgeWeapon()][i] != 0) {
 				// if（判断方向）
-				if (isOffendUp) {
+				if (isOffendUp||mapP.getPlayerControl().tryOffendUp) {
 					// 该判断为攻击范围是否越界
 					if (this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i] < 0
 							|| this.man.getXPosition() + man.getOx()[this.judgeWeapon()][i] > 9
@@ -335,7 +406,7 @@ public class GameControl {
 
 				}
 
-				if (isOffendDown) {
+				if (isOffendDown||mapP.getPlayerControl().tryOffendDown) {
 					if (this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i] < 0
 							|| this.man.getXPosition() - man.getOx()[this.judgeWeapon()][i] > 9
 							|| this.man.getYPosition() - man.getOy()[this.judgeWeapon()][i] < 0
@@ -349,7 +420,7 @@ public class GameControl {
 
 				}
 
-				if (isOffendLeft) {
+				if (isOffendLeft||mapP.getPlayerControl().tryOffendLeft) {
 					if (this.man.getYPosition() + man.getOx()[this.judgeWeapon()][i] < 0
 							|| this.man.getYPosition() + man.getOx()[this.judgeWeapon()][i] > 9
 							|| this.man.getXPosition() - man.getOy()[this.judgeWeapon()][i] < 0
@@ -362,7 +433,7 @@ public class GameControl {
 					this.mapP.repaint();
 
 				}
-				if (isOffendRight) {
+				if (isOffendRight||mapP.getPlayerControl().tryOffendRight) {
 					if (this.man.getYPosition() - man.getOx()[this.judgeWeapon()][i] < 0
 							|| this.man.getYPosition() - man.getOx()[this.judgeWeapon()][i] > 9
 							|| this.man.getXPosition() + man.getOy()[this.judgeWeapon()][i] < 0
@@ -478,6 +549,7 @@ public class GameControl {
 			//TODO method
 			reSetBlockColor();
 			System.out.println("red win");
+			
 			this.mapP.showRedWinPicture();
 			return true;
 		}
@@ -589,7 +661,12 @@ public class GameControl {
 	public mapPanel getMapP() {
 		return mapP;
 	}
-
+    public GameInfo getGameInfo(){
+    	return info;
+    }
+    public Grassman getGrassman(){
+    	return this.man;
+    }
 	public int numOfMan() {
 		for (int i = 0; i < 6; i++) {
 			if (this.man.equals(mans[i])) {

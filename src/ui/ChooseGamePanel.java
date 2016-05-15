@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -35,8 +36,8 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 			
 			singleButton = new JButton();
 			singleButton.setBorder(null);
-			singleButton.setBounds(520,300, 200, 50);
-			singleButton.setContentAreaFilled(true);
+			singleButton.setBounds(950,240, 200, 50);
+			singleButton.setContentAreaFilled(false);
 			singleButton.setBorderPainted(false);
 			singleButton.setIcon(iconSingle);
 			singleButton.setRolloverIcon(iconBigSingle);
@@ -46,8 +47,8 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 		public JButton createDoubleButton() {
 			doubleButton = new JButton();
 			doubleButton.setBorder(null);
-			doubleButton.setBounds(520,400, 200, 50);
-			doubleButton.setContentAreaFilled(true);
+			doubleButton.setBounds(950,300, 200, 50);
+			doubleButton.setContentAreaFilled(false);
 			doubleButton.setBorderPainted(false);
 			doubleButton.setIcon(iconDouble);
 			doubleButton.setRolloverIcon(iconBigDouble);
@@ -57,8 +58,8 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 		public JButton createBackButton() {
 			backButton = new JButton();
 			backButton.setBorder(null);
-			backButton.setBounds(520,500, 200, 50);
-			backButton.setContentAreaFilled(true);
+			backButton.setBounds(950,360, 200, 50);
+			backButton.setContentAreaFilled(false);
 			backButton.setBorderPainted(false);
 			backButton.setIcon(iconBack);
 			backButton.setRolloverIcon(iconBigBack);
@@ -111,4 +112,9 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 			// TODO Auto-generated method stub
 			
 		}
+		@Override
+		public void paintComponent(Graphics g){
+			
+		}
+		
 }

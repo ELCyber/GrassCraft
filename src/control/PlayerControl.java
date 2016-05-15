@@ -8,6 +8,11 @@ import java.awt.event.KeyListener;
 public class PlayerControl implements KeyListener{
 
 	private GameControl gameControl;
+	
+	public boolean tryOffendUp=false;
+	public boolean tryOffendDown=false;
+	public boolean tryOffendLeft=false;
+	public boolean tryOffendRight=false;
 
 	public PlayerControl(GameControl gameControl) {
 		this.gameControl = gameControl;
@@ -27,24 +32,52 @@ public class PlayerControl implements KeyListener{
 		 */
 		case KeyEvent.VK_UP:
 			if (this.gameControl.canMove()) {
+				if(tryOffendUp||tryOffendDown||tryOffendLeft||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendUp=false;
+					tryOffendDown=false;
+					tryOffendLeft=false;
+					tryOffendRight=false;
+				}
 				this.gameControl.KeyUp();
 			}
 			break;
 
 		case KeyEvent.VK_DOWN:
 			if (this.gameControl.canMove()) {
+				if(tryOffendUp||tryOffendDown||tryOffendLeft||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendUp=false;
+					tryOffendDown=false;
+					tryOffendLeft=false;
+					tryOffendRight=false;
+				}
 				this.gameControl.KeyDown();
 			}
 			break;
 
 		case KeyEvent.VK_LEFT:
 			if (this.gameControl.canMove()) {
+				if(tryOffendUp||tryOffendDown||tryOffendLeft||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendUp=false;
+					tryOffendDown=false;
+					tryOffendLeft=false;
+					tryOffendRight=false;
+				}
 				this.gameControl.KeyLeft();
 			}
 			break;
 
 		case KeyEvent.VK_RIGHT:
 			if (this.gameControl.canMove()) {
+				if(tryOffendUp||tryOffendDown||tryOffendLeft||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendUp=false;
+					tryOffendDown=false;
+					tryOffendLeft=false;
+					tryOffendRight=false;
+				}
 				this.gameControl.KeyRight();
 			}
 			break;
@@ -62,32 +95,80 @@ public class PlayerControl implements KeyListener{
 			break;
 			
 			/*
-			 * 攻击方向
+			 * 尝试攻击方向
 			 */
 			//向上攻击
 		case KeyEvent.VK_W:
 			if(this.gameControl.canOffend()){
-				this.gameControl.KeyOffendUp();
+				if(tryOffendDown||tryOffendLeft||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendDown=false;
+					tryOffendLeft=false;
+					tryOffendRight=false;
+				}
+				this.gameControl.offendUpScope();
+				tryOffendUp=true;
+				
 			}
 			break;
 			//向左攻击
 		case KeyEvent.VK_A:
             if(this.gameControl.canOffend()){
-            	this.gameControl.KeyOffendLeft();
+            	if(tryOffendDown||tryOffendUp||tryOffendRight){
+					this.gameControl.reSetBlockColor();
+					tryOffendDown=false;
+					tryOffendUp=false;
+					tryOffendRight=false;
+				}
+            	this.gameControl.offendLeftScope();
+            	tryOffendLeft=true;
+                
 			}
 			break;
 			//向下攻击
 		case KeyEvent.VK_S:
 			 if(this.gameControl.canOffend()){
-				this.gameControl.KeyOffendDown();	
+				 if(tryOffendUp||tryOffendLeft||tryOffendRight){
+	                	this.gameControl.reSetBlockColor();
+	                	tryOffendUp=false;
+						tryOffendLeft=false;
+						tryOffendRight=false;
+					}
+				this.gameControl.offendDownScope();
+				tryOffendDown=true;
+                
 			}
 			break;
 			//向右攻击
 		case KeyEvent.VK_D:
 			 if(this.gameControl.canOffend()){
-				this.gameControl.KeyOffendRight();
+				 if(tryOffendDown||tryOffendLeft||tryOffendUp){
+	                	this.gameControl.reSetBlockColor();
+	                	tryOffendDown=false;
+						tryOffendLeft=false;
+						tryOffendUp=false;
+					}
+				this.gameControl.offendRightScope();
+				tryOffendRight=true;
 			}
 			break;
+		case KeyEvent.VK_SPACE:
+			if(tryOffendUp){
+				this.gameControl.KeyOffendUp();
+				tryOffendUp=false;
+			}
+			if(tryOffendDown){
+				this.gameControl.KeyOffendDown();
+				tryOffendDown=false;
+			}
+			if(tryOffendLeft){
+				this.gameControl.KeyOffendLeft();
+				tryOffendLeft=false;
+			}
+			if(tryOffendRight){
+				this.gameControl.KeyOffendRight();
+				tryOffendRight=false;
+			}
 		default:
 			break;
 		}
