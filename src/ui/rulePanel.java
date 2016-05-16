@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class rulePanel extends JPanel {
-	 public static final Image RULE=new ImageIcon("Graphics/游戏规则.png").getImage();
+	 public static final Image RULE=new ImageIcon("Graphics/new游戏规则.png").getImage();
      @Override
      public void paintComponent(Graphics g){
 
