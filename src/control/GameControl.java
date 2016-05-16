@@ -538,7 +538,7 @@ public class GameControl {
 		int sumOfBlueBlood=0;
 		int sumOfRedBlood=0;
 		//如果96回合结束后仍然无一方全死光，则总血量多的一方胜利
-		if(info.getTurns()==48){
+		if(info.getTurns()==96){
 			for (i = 0; i < 3; i++) {
 				if (mans[i]!=null) {
 					sumOfBlueBlood=sumOfBlueBlood+mans[i].getBlood();
