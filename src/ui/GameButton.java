@@ -13,12 +13,12 @@ import music.Player;
  * 重复代码有点多，有空优化
  **/
 public class GameButton extends MouseAdapter {
-	ImageIcon iconExit = new ImageIcon("Graphics/Button/exit.png");
+	ImageIcon iconExit = new ImageIcon("Graphics/退出叉叉图标/退出游戏1.png");
 	ImageIcon iconTeam = new ImageIcon("Graphics/Button缩小版/制作团队（小）.png");
 	ImageIcon iconRule = new ImageIcon("Graphics/Button缩小版/游戏规则(小).png");
 	ImageIcon iconStart = new ImageIcon("Graphics/Button缩小版/开始（小）.png");
-	ImageIcon iconExitEntered = new ImageIcon("Graphics/Button/exitentered.png");
-	ImageIcon iconExitClicked = new ImageIcon("Graphics/Button/exitclicked.png");
+	ImageIcon iconExitEntered = new ImageIcon("Graphics/退出叉叉图标/退出游戏进入1.png");
+	ImageIcon iconExitClicked = new ImageIcon("Graphics/退出叉叉图标/退出游戏按下1.png");
 	ImageIcon iconStartEntered = new ImageIcon("Graphics/Button/开始（大）.png");
 	ImageIcon iconRuleEntered = new ImageIcon("Graphics/Button/游戏规则（大）.png");
 	ImageIcon iconTeamEntered = new ImageIcon("Graphics/Button/制作团队（大）.png");
@@ -54,7 +54,7 @@ public class GameButton extends MouseAdapter {
 	public JButton createExitButton() {
 		exitGameButton = new JButton();
 		exitGameButton.setBorder(null);
-		exitGameButton.setBounds(1000, 50, 140, 120);
+		exitGameButton.setBounds(1116,0, 84,68);
 		exitGameButton.setContentAreaFilled(false);
 		exitGameButton.setBorderPainted(false);
 		exitGameButton.setIcon(iconExit);
@@ -131,7 +131,7 @@ public class GameButton extends MouseAdapter {
 	public JButton createMapExitButton() {
 		exitMapGameButton = new JButton();
 		exitMapGameButton.setBorder(null);
-		exitMapGameButton.setBounds(1000, 50, 140, 120);
+		exitMapGameButton.setBounds(1116,0, 84,68);
 		exitMapGameButton.setContentAreaFilled(false);
 		exitMapGameButton.setBorderPainted(false);
 		exitMapGameButton.setIcon(iconExit);
@@ -190,8 +190,8 @@ public class GameButton extends MouseAdapter {
 			con.add(frame.mainPanel);
 			con.revalidate();
 			con.repaint();
-			Player.stopMusic();
-			Player.playMusic("十二月的奇迹");
+//			Player.stopMusic();
+//			Player.playMusic("十二月的奇迹");
 		}
 		if(e.getSource() == startBackButton ){
 			reSetButton();
@@ -200,8 +200,8 @@ public class GameButton extends MouseAdapter {
 			con.add(frame.mainPanel);
 			con.revalidate();
 			con.repaint();
-			Player.stopMusic();
-			Player.playMusic("十二月的奇迹");
+//			Player.stopMusic();
+//			Player.playMusic("十二月的奇迹");
 		}
 		if (e.getSource() == ruleButton) {
 			con.removeAll();
@@ -230,7 +230,7 @@ public class GameButton extends MouseAdapter {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		Player.playSound("amaprollover");
+		Player.playSound("按钮");
 	}
 	/**
 	 * 移除按鈕監聽，特效

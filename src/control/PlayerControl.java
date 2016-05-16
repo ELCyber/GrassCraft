@@ -2,6 +2,8 @@ package control;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import music.Player;
 /**
  *实现基本的上下左右、攻击（注意有四个方向，所以是四个按键WASD）、确认 等 键盘 操作 and 重新开始游戏、返回主界面、退出游戏等 鼠标 操作
  */
@@ -26,11 +28,13 @@ public class PlayerControl implements KeyListener{
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+		 
 		switch (e.getKeyCode()) {
 		/*
 		 * 移动方向
 		 */
 		case KeyEvent.VK_UP:
+			
 			if (this.gameControl.canMove()) {
 				if(tryOffendUp||tryOffendDown||tryOffendLeft||tryOffendRight){
 					this.gameControl.reSetBlockColor();
@@ -39,7 +43,10 @@ public class PlayerControl implements KeyListener{
 					tryOffendLeft=false;
 					tryOffendRight=false;
 				}
+				Player.playSound("移动");
 				this.gameControl.KeyUp();
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 
@@ -52,7 +59,10 @@ public class PlayerControl implements KeyListener{
 					tryOffendLeft=false;
 					tryOffendRight=false;
 				}
+				Player.playSound("移动");
 				this.gameControl.KeyDown();
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 
@@ -65,7 +75,10 @@ public class PlayerControl implements KeyListener{
 					tryOffendLeft=false;
 					tryOffendRight=false;
 				}
+				Player.playSound("移动");
 				this.gameControl.KeyLeft();
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 
@@ -78,7 +91,10 @@ public class PlayerControl implements KeyListener{
 					tryOffendLeft=false;
 					tryOffendRight=false;
 				}
+				Player.playSound("移动");
 				this.gameControl.KeyRight();
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 			/*
@@ -87,7 +103,8 @@ public class PlayerControl implements KeyListener{
 		case KeyEvent.VK_ENTER:
 			//回车表示所有指令执行完毕，控制权交给下一人
 			if(!gameControl.isGameover()){
-			this.gameControl.KeyEnter();
+				Player.playSound("确定");
+			    this.gameControl.KeyEnter();
 			}else{
 				System.out.println("game over");
 				gameControl.getMapP().removeKeyListener(PlayerControl.this);
@@ -109,6 +126,8 @@ public class PlayerControl implements KeyListener{
 				this.gameControl.offendUpScope();
 				tryOffendUp=true;
 				
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 			//向左攻击
@@ -123,6 +142,8 @@ public class PlayerControl implements KeyListener{
             	this.gameControl.offendLeftScope();
             	tryOffendLeft=true;
                 
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 			//向下攻击
@@ -137,6 +158,8 @@ public class PlayerControl implements KeyListener{
 				this.gameControl.offendDownScope();
 				tryOffendDown=true;
                 
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 			//向右攻击
@@ -150,9 +173,12 @@ public class PlayerControl implements KeyListener{
 					}
 				this.gameControl.offendRightScope();
 				tryOffendRight=true;
+			}else{
+				Player.playSound("warning");
 			}
 			break;
 		case KeyEvent.VK_SPACE:
+			Player.playSound("攻击");
 			if(tryOffendUp){
 				this.gameControl.KeyOffendUp();
 				tryOffendUp=false;

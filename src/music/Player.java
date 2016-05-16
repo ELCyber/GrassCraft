@@ -38,7 +38,7 @@ public class Player {
 	public static void playSound(String name) {
 			soundPlayer = new SimplePlayer();
 			try {
-				soundPlayer.open(new File("music/" + name + ".mp3"));
+				soundPlayer.open(new File("music/" + name + ".wav"));
 				soundPlayer.setLoop(false);
 			} catch (Exception e) {
 				System.err.println("Error!");

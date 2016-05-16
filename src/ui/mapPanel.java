@@ -39,10 +39,10 @@ public class mapPanel extends JPanel {
 	private ImageIcon blueWin = new ImageIcon("Graphics/输赢/胜利.png");
 	private ImageIcon redWin = new ImageIcon("Graphics/输赢/输了.png");
 	//双人
-	private ImageIcon blueDoubleWin = new ImageIcon("Graphics/输赢/胜利.png");
-	private ImageIcon redDoubleWin = new ImageIcon("Graphics/输赢/输了.png");
+	private ImageIcon blueDoubleWin = new ImageIcon("Graphics/输赢/蓝队胜利.png");
+	private ImageIcon redDoubleWin = new ImageIcon("Graphics/输赢/红队胜利.png");
 	//平局
-	private ImageIcon draw= new ImageIcon("Graphics/gameBG.jpeg");
+	private ImageIcon draw= new ImageIcon("Graphics/输赢/平局.png");
 	
 	private String onesun="Graphics/allsun/血量1.png";
     private String twosun="Graphics/allsun/血量2.png";

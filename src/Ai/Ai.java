@@ -3,6 +3,7 @@ package Ai;
 import control.GameControl;
 import dto.GameInfo;
 import dto.Grassman;
+import music.Player;
 
 public class Ai {
 	
@@ -139,6 +140,7 @@ public class Ai {
 		return false;
 	}
 	public void doAction(int cmd){
+		Player.playSound("攻击");
 		switch(cmd){		
 		case 0: 	
 			if (this.gameControl.canMove()) {

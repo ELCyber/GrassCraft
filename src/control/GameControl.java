@@ -2,6 +2,7 @@ package control;
 
 import dto.GameInfo;
 import dto.Grassman;
+import music.Player;
 import ui.mapPanel;
 
 public class GameControl {
@@ -558,7 +559,7 @@ public class GameControl {
     				//双人模式
     			   this.mapP.showDoubleBlueWinPicture();
     			}
-    			//不知道为什么这里要repaint才能出来 ，通过死亡人数的却不用
+    			Player.playSound("人机胜利");
 				this.mapP.repaint();
     			return true;
 			}
@@ -572,18 +573,15 @@ public class GameControl {
     				//双人模式
     			   this.mapP.showDoubleRedWinPicture();
     			}
-    			//不知道为什么这里要repaint才能出来，通过死亡人数的却不用
+    			Player.playSound("人机胜利");
 				this.mapP.repaint();
     			return true;
 			}
             //平局
             if(sumOfBlueBlood==sumOfRedBlood){
-            	System.out.println(sumOfBlueBlood+"blue");
-            	System.out.println(sumOfRedBlood+"red");
             	reSetBlockColor();
-            	System.out.println("draw");
+            	Player.playSound("平局");
 				this.mapP.showDraw();
-				//不知道为什么这里要repaint才能出来，通过死亡人数的却不用
 				this.mapP.repaint();
 				return true;
 			}
@@ -600,31 +598,28 @@ public class GameControl {
 			}
 		}
 		if(blueDeadNum==3){
-			//红方胜，调用红方胜利的方法
-			//TODO method
 			reSetBlockColor();
-			System.out.println("red win");
 			if(isAiGame()){
 				//人机模式
 			   this.mapP.showRedWinPicture();
+			   Player.playSound("人机失败");
 			}else{
 				//双人模式
 			   this.mapP.showDoubleRedWinPicture();
+			   Player.playSound("人机胜利");
 			}
 			return true;
 		}
 		if(redDeadNum==3){
-			//蓝方胜，调用蓝方胜利的方法
-			//TODO method
 			reSetBlockColor();
-			System.out.println("blue win");
-			
 			if(isAiGame()){
 				//人机模式
 			   this.mapP.showBlueWinPicture();
+			   Player.playSound("人机胜利");
 			}else{
 				//双人模式
 			   this.mapP.showDoubleBlueWinPicture();
+			   Player.playSound("人机胜利");
 			}
 			return true;
 		}
