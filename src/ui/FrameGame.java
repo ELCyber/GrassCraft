@@ -5,8 +5,6 @@ import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -53,7 +51,7 @@ public class FrameGame extends JFrame {
 		this.setSize(1200, 700);
 		// 窗体居中方法,之前util里的文件便可删除
 		this.setLocationRelativeTo(null);
-		// TODO 窗体图标，即任务栏图标，暂时找不到好的图标，用鼠标的草代替
+		// 窗体图标，即任务栏图标，暂时找不到好的图标，用鼠标的草代替
 		this.setIconImage(cursorpng);
 
 		// 设置鼠标
@@ -72,7 +70,7 @@ public class FrameGame extends JFrame {
 		this.setVisible(true);
 		// 加载开场动画
 		this.addMovie();
-
+        this.requestFocus();
 		// 实现窗体移动
 		this.setMove();
 	}
@@ -136,7 +134,7 @@ public class FrameGame extends JFrame {
 		initMainPanel();
 		initRulePanel();
 		initTeamPanel();
-		initMapPanel();
+//		initMapPanel();
 	}
 
 	/**
@@ -147,7 +145,7 @@ public class FrameGame extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				if (e.getY() < 35) {
 					moving = true;
-					requestFocus();
+//					requestFocus();
 					nowX = e.getX();
 					nowY = e.getY();
 				}

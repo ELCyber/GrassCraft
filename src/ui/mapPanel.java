@@ -55,6 +55,7 @@ public class mapPanel extends JPanel {
 	 * 双人
 	 */
 	public mapPanel(GameButton gameButton) {
+		this.requestFocus();
         this.gameButton=gameButton;
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);
@@ -79,6 +80,7 @@ public class mapPanel extends JPanel {
 	 * @param gameButton
 	 */
 	public mapPanel(GameButton gameButton,int diffculty) {
+		this.requestFocus();
         this.gameButton=gameButton;
 		for(int i =0;i<6;i++){
 			mans[i]=new Grassman(i);

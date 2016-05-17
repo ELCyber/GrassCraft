@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import music.Player;
 
 public class ChooseGamePanel extends JPanel implements MouseListener {
-      
+	 public static final ImageIcon BGhalf=new ImageIcon("Graphics/开始界面4.0.png");
 	 FrameGame frame;
 	 JButton singleButton;
 	 JButton doubleButton;
@@ -26,6 +26,7 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 	 public ChooseGamePanel(FrameGame frame,GameButton gameButton){
 		 this.setLayout(null);
 		 this.setOpaque(false);
+		 this.setBackground(null);
 		 this.frame=frame;
 		 this.gameButton=gameButton;
 		 this.add(createSingleButton());
@@ -36,7 +37,7 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 			
 			singleButton = new JButton();
 			singleButton.setBorder(null);
-			singleButton.setBounds(950,240, 200, 50);
+			singleButton.setBounds(950,240, 180, 50);
 			singleButton.setContentAreaFilled(false);
 			singleButton.setBorderPainted(false);
 			singleButton.setIcon(iconSingle);
@@ -47,7 +48,7 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 		public JButton createDoubleButton() {
 			doubleButton = new JButton();
 			doubleButton.setBorder(null);
-			doubleButton.setBounds(950,300, 200, 50);
+			doubleButton.setBounds(950,300, 180, 50);
 			doubleButton.setContentAreaFilled(false);
 			doubleButton.setBorderPainted(false);
 			doubleButton.setIcon(iconDouble);
@@ -58,7 +59,7 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 		public JButton createBackButton() {
 			backButton = new JButton();
 			backButton.setBorder(null);
-			backButton.setBounds(950,360, 200, 50);
+			backButton.setBounds(950,360, 180, 50);
 			backButton.setContentAreaFilled(false);
 			backButton.setBorderPainted(false);
 			backButton.setIcon(iconBack);
@@ -75,17 +76,18 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 				frame.getContentPane().add(frame.map2Panel);
 				frame.getContentPane().revalidate();
 				frame.getContentPane().repaint();
-				Player.stopMusic();
-				Player.playMusic("home");
+//				Player.stopMusic();
+//				Player.playMusic("home");
 			}
             if(e.getSource()==doubleButton){
             	ChooseGamePanel.this.setVisible(false);
             	frame.getContentPane().removeAll();
+            	frame.initMapPanel();
 				frame.getContentPane().add(frame.mapPanel);
 				frame.getContentPane().revalidate();
 				frame.getContentPane().repaint();
-				Player.stopMusic();
-				Player.playMusic("home");
+//				Player.stopMusic();
+//				Player.playMusic("home");
 			}
             if(e.getSource()==backButton){
             	ChooseGamePanel.this.setVisible(false);
@@ -114,7 +116,7 @@ public class ChooseGamePanel extends JPanel implements MouseListener {
 		}
 		@Override
 		public void paintComponent(Graphics g){
-			
+			g.drawImage(BGhalf.getImage(), 910, 100,1200,700,910,100,1200,700,this); 
 		}
 		
 }
